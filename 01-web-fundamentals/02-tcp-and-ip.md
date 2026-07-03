@@ -77,3 +77,28 @@ Here is an ASCII diagram demonstrating a simplified TCP communication flow betwe
  
                            [Connection Closed]
 ```
+
+## Common Questions and Concepts
+
+### Why can't we send one huge file?
+Sending a huge file as a single massive block of data is highly inefficient and error-prone. If even a tiny bit of interference or network issue corrupts a small part of that massive block, the entire file would need to be retransmitted. It would also hog network bandwidth, preventing other users or applications from communicating simultaneously. Breaking data into small pieces (packets/segments) allows for multiplexing (sharing the connection), faster recovery from errors, and efficient routing.
+
+### What are packets?
+Packets (or datagrams/segments depending on the layer) are the small chunks of data that a larger file or message is broken down into for transmission over a network. Each packet contains a portion of the actual data (the payload) as well as a header. The header contains essential metadata, such as the source IP address, destination IP address, sequence numbers, and error-checking information, ensuring the packet can independently find its way to the destination and be reassembled correctly.
+
+### What is an ACK?
+An ACK, short for **Acknowledgment**, is a specific type of control packet or a flag within a TCP packet. When the receiving device successfully receives a packet or a sequence of packets, it sends an ACK back to the sender. This tells the sender, "I got the data up to this point." It's the core mechanism TCP uses to guarantee reliable delivery.
+
+### What happens if a packet is lost?
+TCP handles lost packets gracefully. If a sender transmits a packet but does not receive an ACK from the receiver within a specific timeframe (a timeout), the sender assumes the packet was lost or corrupted in transit. The sender will then automatically retransmit the unacknowledged packet. This ensures that no data is permanently lost, even over unreliable networks.
+
+### The Truck Analogy
+A great way to visualize this is using a "Truck" analogy.
+Imagine you want to send an entire house (a huge file) across the country. 
+*   You can't put the whole house on one truck (why we don't send one huge file).
+*   Instead, you dismantle the house into many small boxes (**packets**).
+*   Each box is loaded onto its own small delivery truck. Each truck has an address label telling it where to go (the **IP header**).
+*   The trucks might take different highways or routes depending on traffic (**IP routing**).
+*   When a truck arrives at the destination, the receiver checks off a list and sends a postcard back to you saying "Box #4 arrived safely" (**ACK**).
+*   If one truck gets a flat tire and never arrives, you notice you never got a postcard for Box #12. So, you pack a duplicate Box #12 and send it on a new truck (**retransmission of lost packets**).
+*   Finally, the receiver uses the sequence numbers on the boxes to rebuild the house exactly as it was.
