@@ -22,3 +22,7 @@ DNS Caching is a process where the IP address of a website is stored in the cach
 * DNS is a caching system. It is a caching system.
 
 ## My Understanding
+Multi level Caching is there to support the DNS known resolution, its not like everytime the user enters "google.com" and the chrome will send the request to a DNS server and get it resolved. This will be wastage of computing power, if we keep this again and again. That's why we have multi level caching to support the DNS known resolution. Caching is happenening at OS level, Chrome browser, ISP, and other places too.
+
+DNS server, is not a single server, it is also distributed, so we can't have a single server for the whole world. That's why we have multiple DNS servers for the whole world.
+
