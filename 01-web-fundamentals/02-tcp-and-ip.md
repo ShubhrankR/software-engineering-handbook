@@ -102,3 +102,30 @@ Imagine you want to send an entire house (a huge file) across the country.
 *   When a truck arrives at the destination, the receiver checks off a list and sends a postcard back to you saying "Box #4 arrived safely" (**ACK**).
 *   If one truck gets a flat tire and never arrives, you notice you never got a postcard for Box #12. So, you pack a duplicate Box #12 and send it on a new truck (**retransmission of lost packets**).
 *   Finally, the receiver uses the sequence numbers on the boxes to rebuild the house exactly as it was.
+
+## Key Takeaways
+
+- DNS finds the server.
+- IP delivers packets.
+- TCP makes communication reliable.
+- Data is divided into packets.
+- ACKs confirm successful delivery.
+- Lost packets are retransmitted.
+- TCP and IP have different responsibilities.
+
+## Connections
+
+This chapter relates to several software engineering concepts:
+
+- Separation of Concerns
+- Single Responsibility Principle (SOLID)
+- Layered Architecture
+- Reliability vs Performance trade-offs
+
+## Questions for Future Me
+
+- Why does TCP use a three-way handshake?
+- What are sequence numbers?
+- How does TCP detect duplicate packets?
+- What is a sliding window?
+- How does congestion control work?
