@@ -23,6 +23,7 @@ DNS Resolution
 No study today.
 
 ## 2026-07-01
+Forgot to fill.
 
 ## 2026-07-02
 No study today.
@@ -38,6 +39,7 @@ The goal is consistency over months, not perfection.
 Continue from where I left off on 3rd July.
 
 ## 2026-07-03
+Forgot to fill.
 
 ## 2026-07-04
 No study today.
@@ -80,3 +82,39 @@ I'm not learning isolated networking concepts. I'm learning how engineers design
 - What are sequence numbers?
 - What is a TCP segment?
 - How does TCP reorder packets?
+
+## 2026-07-06
+
+### Topic
+TCP Three-Way Handshake
+
+### Learned
+- TCP establishes a reliable connection before transferring data.
+- A Three-Way Handshake consists of SYN, SYN-ACK and ACK.
+- One message is insufficient because the sender does not know whether the receiver got the request.
+- Two messages are insufficient because the receiver does not know whether the sender received its response.
+- Three messages are the minimum required for both computers to confirm they can send and receive data.
+- A fourth message adds unnecessary latency and network overhead.
+
+### Realization
+The biggest lesson today was understanding that the Three-Way Handshake is not about transferring data—it is about building confidence that communication works in both directions.
+
+I also realized that good protocol design follows the same engineering principles that we use while writing software: solve the problem with the minimum complexity required.
+
+### Interview Questions I Can Answer
+- Why does TCP use a Three-Way Handshake?
+- Why isn't one message enough?
+- Why isn't two messages enough?
+- Why are four messages unnecessary?
+- What problem does the Three-Way Handshake solve?
+
+### Questions for Tomorrow
+- What is the difference between TCP and UDP?
+- What is a Port Number?
+- How do multiple applications use the network simultaneously?
+
+### Confidence (Out of 10)
+
+Topic Understanding: **8/10**
+
+I can confidently explain the intuition behind the Three-Way Handshake using a real-world analogy, but I still need to understand sequence numbers and how the handshake is implemented internally.

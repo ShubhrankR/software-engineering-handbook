@@ -129,3 +129,51 @@ This chapter relates to several software engineering concepts:
 - How does TCP detect duplicate packets?
 - What is a sliding window?
 - How does congestion control work?
+
+## TCP Three-Way Handshake
+
+Before transferring data, TCP establishes a reliable connection between two computers.
+
+The connection is established using three messages:
+
+1. **SYN** – The client asks to establish a connection.
+2. **SYN-ACK** – The server acknowledges the request and agrees to establish the connection.
+3. **ACK** – The client confirms that it received the server's response.
+
+After these three messages, both computers know that they can send and receive data reliably.
+
+### Why not one message?
+
+With only one message, the sender has no idea whether the receiver actually received it.
+
+### Why not two messages?
+
+After two messages, the client knows the server received its request, but the server still doesn't know whether the client received its reply.
+
+### Why not four messages?
+
+A fourth message doesn't provide any additional information. It only increases latency and network overhead.
+
+### Real-world Analogy
+
+Making a phone call:
+
+Person A: "Hello?"
+
+Person B: "Hello, I can hear you."
+
+Person A: "Great, I can hear you too."
+
+Now both people know the connection works in both directions.
+
+## My Understanding
+
+The biggest takeaway for me was that TCP's three-way handshake is not about sending data.
+
+It is about both computers gaining confidence that communication works in both directions.
+
+Using only one or two messages leaves uncertainty for one side.
+
+Three messages are the minimum required for both computers to confirm that they can send and receive data reliably.
+
+A fourth message would not provide any additional information and would only increase network overhead.
