@@ -118,3 +118,48 @@ I also realized that good protocol design follows the same engineering principle
 Topic Understanding: **8/10**
 
 I can confidently explain the intuition behind the Three-Way Handshake using a real-world analogy, but I still need to understand sequence numbers and how the handshake is implemented internally.
+
+## 2026-07-07
+
+### Topic
+
+Port Numbers & TCP vs UDP
+
+### Learned
+
+- An IP Address identifies a computer on the network.
+- A Port Number identifies the application running on that computer.
+- The operating system uses the destination port number to deliver packets to the correct application.
+- TCP prioritizes reliability by using acknowledgements, retransmissions and packet ordering.
+- UDP prioritizes speed and low latency by avoiding acknowledgements and retransmissions.
+- The choice between TCP and UDP depends on the application's requirements.
+
+### Realization
+
+Today I realized that networking protocols are not designed to be universally "better" than one another.
+
+Instead, they represent different engineering trade-offs.
+
+The biggest takeaway for me was understanding that engineers choose protocols based on the properties they want in a system, such as reliability, latency and performance.
+
+### Interview Questions I Can Answer
+
+- What is a Port Number?
+- Why do we need Port Numbers?
+- What is the difference between TCP and UDP?
+- When should TCP be used?
+- When should UDP be used?
+- Why is UDP preferred for online games and live streaming?
+
+### Questions for Tomorrow
+
+- What is a Socket?
+- How does the operating system deliver packets to an application?
+- What happens inside `fetch()` before an HTTP request is sent?
+
+### Confidence (Out of 10)
+
+**9/10**
+
+I now have a strong understanding of TCP/IP fundamentals. I can explain the intuition behind packets, acknowledgements, retransmissions, the Three-Way Handshake, Port Numbers and TCP vs UDP using real-world analogies. I still want to understand sockets and how the operating system internally manages network communication.
+
