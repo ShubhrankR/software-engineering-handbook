@@ -321,3 +321,64 @@ After studying this chapter, I understand that TCP is responsible for reliable c
 I also learned that Port Numbers allow multiple applications on the same computer to communicate over the network simultaneously.
 
 The most important lesson from this chapter is that there is no universally "best" protocol. Engineers choose between TCP and UDP based on the requirements and trade-offs of the system they are building.
+
+---
+
+## Sockets (Part 1)
+
+After learning about IP addresses and Port Numbers, one question still remains:
+
+> How does an application like Chrome actually communicate with the operating system?
+
+The answer is through a **Socket**.
+
+A socket acts as the communication endpoint between an application and the operating system's networking stack.
+
+Applications do not directly send TCP packets or interact with the network hardware.
+
+Instead, they read from and write to sockets, while the operating system handles the networking details.
+
+The operating system is responsible for:
+
+- Creating sockets
+- Managing network connections
+- Sending data through TCP/IP
+- Receiving data from the network
+- Delivering incoming data back to the correct application
+
+### Relationship
+
+```
+Application
+        │
+        ▼
+     Socket
+        │
+        ▼
+       TCP
+        │
+        ▼
+        IP
+        │
+        ▼
+ Network Interface Card
+        │
+        ▼
+     Internet
+```
+
+### Why do sockets exist?
+
+Sockets provide a programming interface that allows applications to communicate over the network without worrying about packet transmission, routing or hardware communication.
+
+This abstraction allows developers to focus on building applications while the operating system manages networking.
+
+### Current Understanding
+
+This is still a topic I want to explore further.
+
+Today I learned that sockets are not another networking protocol like TCP or IP.
+
+Instead, they provide the interface through which an application communicates with the operating system's networking stack.
+
+I plan to revisit this topic after learning HTTP and by building practical examples using Node.js.

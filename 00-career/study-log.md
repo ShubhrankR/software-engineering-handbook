@@ -163,3 +163,42 @@ The biggest takeaway for me was understanding that engineers choose protocols ba
 
 I now have a strong understanding of TCP/IP fundamentals. I can explain the intuition behind packets, acknowledgements, retransmissions, the Three-Way Handshake, Port Numbers and TCP vs UDP using real-world analogies. I still want to understand sockets and how the operating system internally manages network communication.
 
+## 2026-07-08
+
+### Topic
+
+Sockets (Part 1)
+
+### Learned
+
+- Applications do not communicate directly with the network.
+- Applications communicate with the operating system through sockets.
+- A socket acts as the communication endpoint between an application and the networking stack.
+- TCP and IP are responsible for networking, while sockets provide the programming interface used by applications.
+
+### Realization
+
+Today was different from previous sessions.
+
+Instead of fully understanding a topic in one sitting, I realized it is acceptable to leave a chapter partially complete and revisit it after gaining more context.
+
+I also understood that learning networking is becoming easier because each new concept connects with the previous one.
+
+### Interview Questions I Can Partially Answer
+
+- What is a Socket?
+- Why do sockets exist?
+- How does an application communicate with the operating system?
+
+### Questions for Tomorrow
+
+- What uniquely identifies a TCP connection?
+- How does the operating system manage multiple sockets?
+- What does a socket look like in actual code?
+- How does `fetch()` eventually use a socket?
+
+### Confidence (Out of 10)
+
+**6.5/10**
+
+I understand the purpose of sockets, but I don't yet have the complete mental model. I want to strengthen this topic using practical examples before marking the TCP/IP chapter as complete.
