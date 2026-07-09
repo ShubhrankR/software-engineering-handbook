@@ -202,3 +202,35 @@ I also understood that learning networking is becoming easier because each new c
 **6.5/10**
 
 I understand the purpose of sockets, but I don't yet have the complete mental model. I want to strengthen this topic using practical examples before marking the TCP/IP chapter as complete.
+
+## 2026-07-09
+
+### Topic
+
+Sockets
+
+### Learned
+
+- A socket is one endpoint of a network communication.
+- A TCP connection is uniquely identified by Source IP, Source Port, Destination IP and Destination Port.
+- Multiple applications can communicate simultaneously using different sockets.
+- The operating system manages sockets and delivers data to the correct application.
+
+### Realization
+
+Today I understood that sockets are the missing link between applications and the transport layer.
+
+Port Numbers identify applications, while sockets represent active communication endpoints between applications.
+
+### Interview Questions I Can Answer
+
+- What is a Socket?
+- What is the difference between a Port and a Socket?
+- How does Google distinguish millions of client connections?
+- How can Chrome open multiple tabs to the same website simultaneously?
+
+### Confidence (Out of 10)
+
+**9.5/10**
+
+TCP/IP now feels like one connected story instead of several isolated concepts.

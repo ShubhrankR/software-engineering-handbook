@@ -382,3 +382,197 @@ Today I learned that sockets are not another networking protocol like TCP or IP.
 Instead, they provide the interface through which an application communicates with the operating system's networking stack.
 
 I plan to revisit this topic after learning HTTP and by building practical examples using Node.js.
+
+---
+
+## What is a Socket?
+
+A socket is one endpoint of a network communication between two applications.
+
+When an application wants to communicate over the network, the operating system creates a socket.
+
+A TCP connection is uniquely identified using four values:
+
+- Source IP Address
+- Source Port
+- Destination IP Address
+- Destination Port
+
+This combination uniquely identifies a communication between two applications.
+
+### Why do we need sockets?
+
+A computer may run many applications simultaneously.
+
+Similarly, a server may handle millions of client connections at the same time.
+
+Sockets allow the operating system to uniquely identify and manage every active network connection.
+
+### Real-world Analogy
+
+Imagine a hotel.
+
+- Hotel Address → IP Address
+- Room Number → Port Number
+- Guest's Active Booking → Socket
+
+The room already exists.
+
+The guest already exists.
+
+The booking represents an active connection between the guest and the hotel.
+
+Similarly, a socket represents an active communication endpoint between two applications.
+
+### My Understanding
+
+Initially, I thought a socket was simply another networking protocol.
+
+Now I understand that a socket is an operating system abstraction representing one endpoint of a communication channel.
+
+Sockets make it possible for multiple applications and multiple users to communicate simultaneously without mixing their data.
+
+### Example
+
+Suppose I open Google in Chrome.
+
+My laptop has the following network information:
+
+```
+Source IP Address      : 192.168.1.20
+Source Port            : 51234
+
+Destination IP Address : 142.250.183.14
+Destination Port       : 443
+```
+
+Explanation:
+
+- **Source IP** → My laptop on the local network.
+- **Source Port** → The temporary (ephemeral) port assigned by the operating system for this connection.
+- **Destination IP** → Google's server.
+- **Destination Port** → HTTPS service running on port **443**.
+
+This combination uniquely identifies my TCP connection with Google's server.
+
+Now imagine another user.
+
+```
+Source IP Address      : 192.168.1.35
+Source Port            : 51234
+
+Destination IP Address : 142.250.183.14
+Destination Port       : 443
+```
+
+Notice that both users are using **Source Port 51234**.
+
+This is perfectly valid because their **Source IP Addresses are different**.
+
+Google can distinguish these two connections because the complete 4-tuple is different for each connection.
+
+```
+Application
+        │
+creates
+        │
+Socket
+        │
+OS assigns
+        │
+Local Port
+        │
+Communicates with
+        │
+Remote IP + Remote Port
+
+```
+
+The socket is the OS object that your application uses.
+The 4-tuple is what uniquely identifies the TCP connection.
+That distinction will help you later when we study:
+
+```
+Node.js net.Socket
+Browser sockets
+WebSockets
+Linux socket APIs
+```
+
+### Example: Multiple Browser Tabs
+
+Suppose I open **three tabs** in Google Chrome, and all of them visit:
+
+```
+https://google.com
+```
+
+Chrome creates a separate TCP connection for each tab.
+
+### Tab 1
+
+```
+Source IP Address      : 192.168.1.20
+Source Port            : 51234
+
+Destination IP Address : 142.250.183.14
+Destination Port       : 443
+```
+
+---
+
+### Tab 2
+
+```
+Source IP Address      : 192.168.1.20
+Source Port            : 51235
+
+Destination IP Address : 142.250.183.14
+Destination Port       : 443
+```
+
+---
+
+### Tab 3
+
+```
+Source IP Address      : 192.168.1.20
+Source Port            : 51236
+
+Destination IP Address : 142.250.183.14
+Destination Port       : 443
+```
+
+### Observation
+
+Notice that all three tabs have:
+
+- The same **Source IP Address** (same laptop)
+- The same **Destination IP Address** (Google's server)
+- The same **Destination Port** (HTTPS - Port 443)
+
+The only value that changes is the **Source Port Number**.
+
+This allows the operating system to create and manage three independent TCP connections simultaneously.
+
+When Google sends responses back, it uses the complete TCP connection information (Source IP, Source Port, Destination IP and Destination Port) to ensure that each response reaches the correct browser tab.
+
+### Key Takeaway
+
+Even though all three tabs are communicating with the same server, they are treated as three separate TCP connections because each connection has a unique Source Port Number.
+
+## 💼 Interview Corner
+
+### Question
+
+Can two browser tabs communicate with the same website using the same Source IP Address?
+
+**Answer:**
+
+Yes.
+
+Since both tabs are running on the same computer, they naturally share the same Source IP Address.
+
+The operating system assigns a different **ephemeral Source Port** to each TCP connection, allowing the browser to maintain multiple independent connections to the same server simultaneously.
+
+This is why you can open multiple tabs of the same website without the responses getting mixed up.
