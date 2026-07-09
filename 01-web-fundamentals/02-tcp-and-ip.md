@@ -576,3 +576,70 @@ Since both tabs are running on the same computer, they naturally share the same 
 The operating system assigns a different **ephemeral Source Port** to each TCP connection, allowing the browser to maintain multiple independent connections to the same server simultaneously.
 
 This is why you can open multiple tabs of the same website without the responses getting mixed up.
+
+---
+
+# Chapter Summary
+
+## Problems Solved
+
+| Problem | Solution |
+|---------|----------|
+| Humans need reliable communication | TCP |
+| Computers need packet delivery | IP |
+| Data is too large to send at once | Packets |
+| Lost packets | ACK + Retransmission |
+| Multiple applications on one computer | Port Numbers |
+| Multiple simultaneous connections | Sockets |
+| Different application requirements | TCP vs UDP |
+
+---
+
+## Mental Model
+
+```
+Browser
+    │
+Application
+    │
+Socket
+    │
+TCP / UDP
+    │
+IP
+    │
+Internet
+    │
+Server
+```
+
+---
+
+## Interview Questions
+
+- What is TCP?
+- What is IP?
+- Why are TCP and IP separate protocols?
+- What is a Three-Way Handshake?
+- Why not two messages?
+- What is a Port Number?
+- What is a Socket?
+- TCP vs UDP?
+- When should TCP be used?
+- When should UDP be used?
+
+---
+
+## Key Engineering Lessons
+
+- Separation of Concerns
+- Layered Architecture
+- Reliability vs Latency
+- Engineering Trade-offs
+- Single Responsibility Principle
+
+---
+
+## Status
+
+✅ Chapter Complete
