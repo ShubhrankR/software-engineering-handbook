@@ -1,28 +1,113 @@
 # DNS Resolution
 
 ## What problem does DNS solve?
-The problem that DNS solves is that humans remember names and computers only understand numbers. So for a computer its easier to remember an IP address of google.com instead of name directly "google". But we humans are good with names, like google, we know what it means, and what it is. And we can't actually remmber the google IP address. It will be tough for us. That's why for conversion of domain name to an IP address we need a phonebook. That phonebook is known as DNS. 
 
-## Why do we need DNS?
-We need DNS because humans remmeber names not numbers and computers only understand numbers. So for computer its easier to remmeber an IP address of google.com instead of name directly "google". But we humans are good with names, like google, we know what it means, and what it is. And we can't actually remmber the google IP address. It will be tough for us. That's why for conversion of domain name to an IP address we need a phonebook. That phonebook is known as DNS. 
+DNS solves the problem that humans remember names, but computers communicate using numbers.
+
+For example, humans can easily remember a name like `google.com`, but remembering the IP address of Google is difficult. Computers, on the other hand, need an IP address to identify where the request should go.
+
+DNS acts like a phonebook for the internet. It converts a domain name into the IP address that computers can use.
+
+## What is DNS?
+
+DNS stands for Domain Name System.
+
+It is a distributed and hierarchical system that maps domain names to IP addresses. Instead of depending on one server for the whole world, DNS uses many servers that work together to resolve domain names.
 
 ## What is DNS Resolution?
-The process of converting a domain name to an IP address is known as DNS Resolution. It is a process that happens behind the scenes and is not something that we as users need to worry about. It is a process that happens in the background and is something that we as users need to worry about.
+
+DNS Resolution is the process of converting a domain name into an IP address.
+
+When a user enters a domain like `google.com` in the browser, DNS resolution happens in the background. The user does not need to know the IP address manually; DNS finds it and allows the browser to continue the request.
+
+## Why do we need DNS?
+
+We need DNS because domain names are easier for humans to remember, while IP addresses are required by computers to communicate over the network.
+
+Without DNS, users would need to remember IP addresses for every website. This would be difficult, especially because websites can change their IP addresses over time.
+
+DNS makes internet usage practical by allowing users to access websites through readable names instead of numeric addresses.
 
 ## What happens if DNS doesn't exist?
-If DNS doesn't exist, then we would have to remember the IP address of every website we want to visit. That would be a huge task. Also, websites can change their IP addresses, so we would have to update our bookmarks every time. That's why DNS is so important. It makes our lives easier by providing us with a way to access websites using domain names instead of IP addresses. It is like a phonebook for the internet, where we can look up the IP address of a website and then access it. 
+
+If DNS does not exist, users would have to remember the IP address of every website they want to visit.
+
+This would create two major problems:
+
+- Remembering IP addresses would be difficult for humans.
+- If a website changes its IP address, users would need to update the saved address manually.
+
+DNS avoids this problem by providing a system where domain names can stay the same even if the underlying IP address changes.
 
 ## DNS Caching
-DNS Caching is a process where the IP address of a website is stored in the cache of the browser or the operating system. This is done so that the next time we visit the same website, we don't have to go through the DNS resolution process again. It is like a phonebook for the internet, where we can look up the IP address of a website and then access it. It is saved at multi level, like browser, OS, router, ISP etc. This is known as Multi level caching.
+
+DNS caching means storing a DNS response for some time so the same domain does not need to be resolved again and again.
+
+For example, if the browser already knows the IP address for `google.com`, it can reuse that cached result instead of immediately asking a DNS resolver again.
+
+### Why is DNS caching important?
+
+DNS caching improves performance and reduces repeated work.
+
+If every request required a fresh DNS lookup, it would waste computing power and add extra delay. Caching allows commonly visited domains to resolve faster because the answer may already be available nearby.
+
+### Multi-level DNS Cache
+
+DNS responses may be cached at multiple levels:
+
+- Browser
+- Operating System
+- Router
+- ISP Resolver
+
+This is why the browser does not always need to contact a DNS server directly every time a user enters a known domain name.
+
+## Real-world Analogy
+
+DNS is like a phonebook.
+
+If you know a person's name but not their phone number, you look up the name in a phonebook and get the number. Similarly, when you know a domain name like `google.com`, DNS helps find the IP address needed to connect to that website.
+
+## Connections
+
+DNS demonstrates several important software engineering concepts:
+
+- Distributed Systems: DNS is not handled by a single server for the entire world.
+- Hierarchical Design: DNS uses a tree-like structure to organize domain names.
+- Caching: DNS responses can be stored and reused at multiple levels.
+- Performance Optimization: Caching reduces repeated lookups and makes requests faster.
 
 ## Key Takeaways
-* DNS is like a phonebook for the internet. It is used to convert domain names to IP addresses.
-* DNS is a distributed system. It is not a centralized system.
-* DNS is a hierarchical system. It is a tree-like structure.
-* DNS is a caching system. It is a caching system.
+
+- DNS converts human-readable domain names into IP addresses.
+- DNS Resolution is the process of finding the IP address for a domain name.
+- DNS is distributed, so it does not depend on one global server.
+- DNS is hierarchical, which helps organize domain names at scale.
+- DNS caching improves performance by avoiding repeated lookups.
+- DNS can be cached at the browser, OS, router, and ISP resolver levels.
 
 ## My Understanding
-Multi level Caching is there to support the DNS known resolution, its not like everytime the user enters "google.com" and the chrome will send the request to a DNS server and get it resolved. This will be wastage of computing power, if we keep this again and again. That's why we have multi level caching to support the DNS known resolution. Caching is happenening at OS level, Chrome browser, ISP, and other places too.
 
-DNS server, is not a single server, it is also distributed, so we can't have a single server for the whole world. That's why we have multiple DNS servers for the whole world.
+Multi-level caching supports DNS resolution. It is not like every time a user enters `google.com`, Chrome must send a fresh request to a DNS server and resolve it again. Doing that repeatedly would waste computing power and add unnecessary delay.
 
+That is why DNS uses caching at multiple levels, such as the browser, operating system, router, ISP resolver, and other places.
+
+A DNS server is also not a single server for the whole world. DNS is distributed because one server cannot handle resolution for everyone globally. Multiple DNS servers work together to support the entire system.
+
+## Interview Questions
+
+### What problem does DNS solve?
+
+DNS solves the problem of mapping human-readable domain names to IP addresses that computers can use.
+
+### What is DNS Resolution?
+
+DNS Resolution is the process of converting a domain name, such as `google.com`, into its corresponding IP address.
+
+### Why is DNS caching important?
+
+DNS caching is important because it avoids repeated DNS lookups, reduces latency, and saves computing resources.
+
+### What happens if DNS fails?
+
+If DNS fails, the browser may not be able to find the IP address for a domain name, so the website may not load even if the server is running.
