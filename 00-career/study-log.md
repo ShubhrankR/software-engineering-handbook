@@ -234,3 +234,104 @@ Port Numbers identify applications, while sockets represent active communication
 **9.5/10**
 
 TCP/IP now feels like one connected story instead of several isolated concepts.
+
+## 2026-07-10
+
+No study today.
+
+### Reason
+
+After several consecutive study sessions, I felt mentally drained after work and couldn't gather enough energy to study.
+
+### Reflection
+
+Missing one day is acceptable, but I should avoid turning one missed day into a longer break.
+
+The goal is to consistently return to the next study session instead of trying to compensate by studying extra later.
+
+### Next Action
+
+Continue with the TLS & HTTPS chapter.
+
+---
+
+## 2026-07-11
+
+No study today.
+
+### Reason
+
+Travelled from Bengaluru to Chennai to attend a friend's engagement ceremony.
+
+### Reflection
+
+This was a planned personal commitment, not procrastination.
+
+Maintaining relationships is also important. Planned breaks should not create guilt.
+
+### Next Action
+
+Resume the handbook after returning to Bengaluru.
+
+---
+
+## 2026-07-12
+
+No study today.
+
+### Reason
+
+Returned to Bengaluru after the engagement ceremony and spent the day travelling.
+
+### Reflection
+
+Travelling is tiring, and it is okay to rest before returning to the learning routine.
+
+The important part is returning, not maintaining a perfect streak.
+
+### Next Action
+
+Resume with the TLS & HTTPS chapter.
+
+---
+
+## 2026-07-13
+
+No study today.
+
+### Reason
+
+Returned to the normal work routine after the weekend trip and felt mentally exhausted.
+
+### Reflection
+
+Today reminded me that motivation is temporary, but habits are long-term.
+
+I don't need to "catch up" on missed days.
+
+I only need to continue from the next chapter.
+
+### Next Action
+
+Begin the TLS & HTTPS chapter on the next study session.
+
+# Weekly Reflection
+
+## Wins
+
+- Completed the DNS chapter.
+- Completed the TCP/IP chapter.
+- Built a consistent repository structure.
+- Maintained meaningful Git commits.
+
+## Challenges
+
+- Felt overwhelmed by multiple life goals.
+- Lost momentum after travelling.
+- Sometimes preferred gaming over studying.
+
+## Improvements for Next Week
+
+- Study immediately after dinner instead of deciding later.
+- Keep one session focused on one concept only.
+- Continue committing after every study session.
