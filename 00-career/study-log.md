@@ -203,55 +203,44 @@ I also understood that learning networking is becoming easier because each new c
 
 I understand the purpose of sockets, but I don't yet have the complete mental model. I want to strengthen this topic using practical examples before marking the TCP/IP chapter as complete.
 
-## 2026-07-09
-
-### Topic
-
-Sockets
-
-### Learned
-
-- A socket is one endpoint of a network communication.
-- A TCP connection is uniquely identified by Source IP, Source Port, Destination IP and Destination Port.
-- Multiple applications can communicate simultaneously using different sockets.
-- The operating system manages sockets and delivers data to the correct application.
-
-### Realization
-
-Today I understood that sockets are the missing link between applications and the transport layer.
-
-Port Numbers identify applications, while sockets represent active communication endpoints between applications.
-
-### Interview Questions I Can Answer
-
-- What is a Socket?
-- What is the difference between a Port and a Socket?
-- How does Google distinguish millions of client connections?
-- How can Chrome open multiple tabs to the same website simultaneously?
-
-### Confidence (Out of 10)
-
-**9.5/10**
-
-TCP/IP now feels like one connected story instead of several isolated concepts.
-
 ## 2026-07-10
 
 No study today.
 
 ### Reason
 
-After several consecutive study sessions, I felt mentally drained after work and couldn't gather enough energy to study.
+Spent the evening planning my flatmate's birthday celebration and packing for my upcoming weekend trip to Chennai.
 
 ### Reflection
 
-Missing one day is acceptable, but I should avoid turning one missed day into a longer break.
+Personal commitments and planning for upcoming events took priority today.
 
-The goal is to consistently return to the next study session instead of trying to compensate by studying extra later.
+Missing one study session is acceptable, but I should return to the handbook as soon as the commitments are over instead of letting the break become longer than necessary.
 
 ### Next Action
 
 Continue with the TLS & HTTPS chapter.
+
+# Weekly Reflection
+
+## Wins
+
+- Completed the DNS chapter.
+- Completed the TCP/IP chapter.
+- Built a consistent repository structure.
+- Maintained meaningful Git commits.
+
+## Challenges
+
+- Felt overwhelmed by multiple life goals.
+- Lost momentum after travelling.
+- Sometimes preferred gaming over studying.
+
+## Improvements for Next Week
+
+- Study immediately after dinner instead of deciding later.
+- Keep one session focused on one concept only.
+- Continue committing after every study session.
 
 ---
 
@@ -281,7 +270,7 @@ No study today.
 
 ### Reason
 
-Returned to Bengaluru after the engagement ceremony and spent the day travelling.
+Returned to Bengaluru after attending the engagement ceremony and spent the day travelling back.
 
 ### Reflection
 
@@ -305,33 +294,95 @@ Returned to the normal work routine after the weekend trip and felt mentally exh
 
 ### Reflection
 
-Today reminded me that motivation is temporary, but habits are long-term.
+Returning after a break is much harder than maintaining momentum.
 
-I don't need to "catch up" on missed days.
+I don't need to catch up on missed days.
 
 I only need to continue from the next chapter.
 
 ### Next Action
 
-Begin the TLS & HTTPS chapter on the next study session.
+Resume the TLS & HTTPS chapter.
 
-# Weekly Reflection
+---
 
-## Wins
+## 2026-07-14
 
-- Completed the DNS chapter.
-- Completed the TCP/IP chapter.
-- Built a consistent repository structure.
-- Maintained meaningful Git commits.
+No study today.
 
-## Challenges
+### Reason
 
-- Felt overwhelmed by multiple life goals.
-- Lost momentum after travelling.
-- Sometimes preferred gaming over studying.
+Did not study today. I don't remember the exact reason, but I was unable to continue after the weekend break.
 
-## Improvements for Next Week
+### Reflection
 
-- Study immediately after dinner instead of deciding later.
-- Keep one session focused on one concept only.
-- Continue committing after every study session.
+This reminded me how easy it is to lose momentum after taking a few days off.
+
+The challenge wasn't understanding the material—it was restarting.
+
+Going forward, I want to focus less on maintaining a perfect streak and more on returning quickly after a break.
+
+### Next Action
+
+Resume with the TLS & HTTPS chapter.
+
+---
+
+## 2026-07-15
+
+No study today.
+
+### Reason
+
+Attended an office dinner hosted by VISA. A Senior Director visited our office and took the team out for dinner.
+
+### Reflection
+
+Not every missed study session is a result of procrastination.
+
+Work commitments and team events are part of a professional career. The important thing is to resume the learning journey instead of feeling guilty about a planned or unavoidable event.
+
+### Next Action
+
+Continue the TLS & HTTPS chapter from where I left off.
+
+---
+
+## 2026-07-16
+
+### Topic
+
+Why HTTPS Was Invented
+
+### Learned
+
+- HTTP successfully transfers data but sends it in plain text.
+- Plain HTTP does not provide confidentiality.
+- Sensitive information such as usernames and passwords can potentially be read while travelling across the network.
+- HTTPS was introduced to solve this problem by encrypting communication.
+- Confidentiality means that only the sender and the intended receiver should be able to read the transmitted data.
+
+### Realization
+
+Earlier, I thought HTTPS was simply a secure version of HTTP.
+
+Today I understood the real reason HTTPS exists.
+
+HTTP already solved the problem of transferring data between a client and a server, but it did not protect that data while it travelled across the network.
+
+HTTPS was introduced to provide confidentiality by encrypting communication.
+
+### Interview Questions I Can Answer
+
+- Why was HTTPS invented?
+- Why is HTTP considered insecure?
+- What is Confidentiality?
+- What problem does HTTPS solve?
+
+### Confidence (Out of 10)
+
+**7/10**
+
+I understand why HTTPS exists and the security problem it solves. Next, I want to learn how TLS uses encryption, public/private keys and certificates to provide secure communication.
+
+---
