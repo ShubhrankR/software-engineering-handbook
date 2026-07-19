@@ -386,3 +386,47 @@ HTTPS was introduced to provide confidentiality by encrypting communication.
 I understand why HTTPS exists and the security problem it solves. Next, I want to learn how TLS uses encryption, public/private keys and certificates to provide secure communication.
 
 ---
+
+
+## 2026-07-19
+
+### Topic
+
+Encryption Fundamentals
+
+### Learned
+
+- Encryption transforms readable information into an unreadable form before transmission.
+- Simple transformation techniques (such as reversing a message) help explain the concept but are not secure.
+- If attackers observe enough encrypted messages, they may discover patterns.
+- Modern cryptography does not rely on keeping the encryption algorithm secret.
+- The encryption algorithm can be public, while the encryption key must remain secret.
+
+### Realization
+
+Today I understood one of the most important principles of modern cryptography.
+
+Security does not come from hiding the encryption algorithm.
+
+Instead, it comes from protecting the secret key used by the algorithm.
+
+This changed my understanding of how secure communication works over the Internet.
+
+### Interview Questions I Can Answer
+
+- What is encryption?
+- Why is simple encryption insecure?
+- Why can modern encryption algorithms be public?
+- Why is the encryption key kept secret?
+
+### Confidence (Out of 10)
+
+7/10
+
+I now understand why encryption exists and why modern cryptography relies on secret keys.
+
+I still need to learn how Alice and Bob securely exchange those keys over an insecure network.
+
+### Next Action
+
+Learn how two computers securely exchange encryption keys over the Internet.
