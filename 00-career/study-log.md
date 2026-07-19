@@ -387,6 +387,49 @@ I understand why HTTPS exists and the security problem it solves. Next, I want t
 
 ---
 
+## 2026-07-17
+
+No study today.
+
+### Reason
+
+Did not study today.
+
+### Reflection
+
+After returning to the learning routine on 16th July, I couldn't maintain the momentum the very next day.
+
+This reminded me that building a consistent habit is more challenging than completing a single productive session.
+
+The goal is to keep returning instead of expecting perfection.
+
+### Next Action
+
+Resume the TLS & HTTPS chapter.
+
+---
+
+## 2026-07-18
+
+No study today.
+
+### Reason
+
+Did not study today.
+
+### Reflection
+
+I missed another study session today.
+
+Instead of feeling guilty about the missed days, I want to focus on getting back to learning tomorrow.
+
+Consistency is built by repeatedly returning after interruptions, not by maintaining an unbroken streak.
+
+### Next Action
+
+Continue learning the TLS & HTTPS chapter.
+
+---
 
 ## 2026-07-19
 
