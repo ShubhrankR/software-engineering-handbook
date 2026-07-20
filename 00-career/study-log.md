@@ -473,3 +473,42 @@ I still need to learn how Alice and Bob securely exchange those keys over an ins
 ### Next Action
 
 Learn how two computers securely exchange encryption keys over the Internet.
+
+---
+
+## 2026-07-20
+
+### Topic
+
+The Key Distribution Problem
+
+### Learned
+
+- Symmetric encryption requires both parties to possess the same secret key.
+- Simply sending the secret key over the Internet is insecure because an attacker can intercept it.
+- Protecting the message is not enough; the secret key itself must also remain secret.
+- This challenge is known as the Key Distribution Problem.
+
+### Realization
+
+Today I discovered that encryption alone does not solve secure communication.
+
+The biggest challenge is how two computers obtain the same secret key before encrypted communication even begins.
+
+This problem initially felt impossible to solve, which helped me appreciate why modern cryptography evolved beyond simple shared-secret techniques.
+
+### Interview Questions I Can Answer
+
+- Why can't Alice simply send the secret key to Bob?
+- What is the Key Distribution Problem?
+- Why is key exchange an important part of secure communication?
+
+### Confidence (Out of 10)
+
+8/10
+
+I clearly understand the problem, but I have not yet learned how modern cryptography solves it.
+
+### Next Action
+
+Learn how two computers establish a shared secret over an insecure network.

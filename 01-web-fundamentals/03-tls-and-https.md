@@ -264,3 +264,88 @@ Now I understand that modern cryptography follows a different principle.
 Everyone can know the encryption algorithm.
 
 The security comes from protecting the secret key used by that algorithm.
+
+---
+
+# The Key Distribution Problem
+
+Encryption allows Alice and Bob to communicate securely by using a secret key.
+
+However, this introduces a new problem.
+
+Both Alice and Bob need to possess the same secret key before they can exchange encrypted messages.
+
+The obvious solution is for Alice to simply send the key to Bob.
+
+```
+Alice ---- Secret Key ----> Bob
+```
+
+Unfortunately, if an attacker is able to inspect all network traffic, the attacker also receives the same secret key.
+
+```
+Alice
+   │
+Internet
+   │
+Eve 👀
+   │
+Bob
+```
+
+Once the attacker knows the secret key, every future encrypted message can also be decrypted.
+
+The communication is no longer secure.
+
+---
+
+## Why Is This Difficult?
+
+At first, it seems like Alice and Bob could each keep part of the secret key and exchange the missing pieces.
+
+However, if those pieces are also transmitted over the same insecure network, an attacker can intercept them as well.
+
+This raises an important question.
+
+> How can two computers establish a shared secret key over a network where every packet can be intercepted?
+
+This problem is known as the **Key Distribution Problem**.
+
+For many years, this was considered one of the biggest challenges in secure communication.
+
+The solution to this problem eventually led to one of the greatest breakthroughs in modern cryptography.
+
+---
+
+## Key Takeaways
+
+- Symmetric encryption requires both parties to share the same secret key.
+- Sending the secret key over an insecure network exposes it to attackers.
+- Protecting the message is not enough; the secret key must also be protected.
+- Securely exchanging a secret key is known as the **Key Distribution Problem**.
+
+---
+
+## Interview Questions
+
+### Why can't Alice simply send the secret key to Bob?
+
+Because anyone capable of intercepting the network traffic would also receive the secret key, making future encrypted communication insecure.
+
+---
+
+### What is the Key Distribution Problem?
+
+The Key Distribution Problem is the challenge of securely establishing a shared secret key between two parties over an insecure communication channel.
+
+---
+
+## My Understanding
+
+Initially, I thought that once Alice and Bob had a secret key, secure communication would be solved.
+
+Today I realized that the real challenge is much earlier.
+
+Before encryption can even begin, both parties somehow need to obtain the same secret key without allowing anyone else to learn it.
+
+Understanding this problem helps explain why more advanced cryptographic techniques were eventually developed.
