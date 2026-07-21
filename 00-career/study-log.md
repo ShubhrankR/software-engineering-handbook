@@ -512,3 +512,47 @@ I clearly understand the problem, but I have not yet learned how modern cryptogr
 ### Next Action
 
 Learn how two computers establish a shared secret over an insecure network.
+
+---
+
+## 2026-07-21
+
+### Topic
+
+The Key Exchange Problem
+
+### Learned
+
+- Symmetric encryption requires both parties to already share the same secret key.
+- Sending the secret key over the Internet is insecure because an attacker can intercept it.
+- This challenge is known as the **Key Exchange Problem**.
+- Public Key Cryptography introduces two keys: a Public Key and a Private Key.
+- The Public Key can be shared openly, while the Private Key must always remain secret.
+- Messages encrypted using a Public Key can only be decrypted using the corresponding Private Key.
+
+### Realization
+
+Initially, I assumed secure communication only required encryption.
+
+Today I realized that securely exchanging the encryption key is an equally important problem.
+
+Public Key Cryptography exists to solve this challenge.
+
+### Interview Questions I Can Answer
+
+- What is the Key Exchange Problem?
+- Why is symmetric encryption alone not sufficient?
+- What is the difference between a Public Key and a Private Key?
+- Why is the Public Key allowed to be shared?
+
+### Confidence (Out of 10)
+
+7/10
+
+I now understand why Public Key Cryptography exists.
+
+I still need to learn how HTTPS uses Public Keys to establish a shared secret and why it later switches to symmetric encryption.
+
+### Next Action
+
+Learn how TLS establishes a shared secret and why symmetric encryption is used for the rest of the communication.

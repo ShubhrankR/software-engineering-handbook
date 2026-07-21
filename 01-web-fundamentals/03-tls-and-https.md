@@ -349,3 +349,134 @@ Today I realized that the real challenge is much earlier.
 Before encryption can even begin, both parties somehow need to obtain the same secret key without allowing anyone else to learn it.
 
 Understanding this problem helps explain why more advanced cryptographic techniques were eventually developed.
+
+---
+
+# The Key Exchange Problem
+
+Encryption relies on a secret key.
+
+If Alice and Bob already share the same secret key, they can communicate securely using symmetric encryption.
+
+However, this introduces another problem.
+
+How do two strangers securely share the secret key over an insecure network?
+
+Suppose Alice wants to use the following secret key:
+
+```
+banana123
+```
+
+She sends the key to Bob over the Internet.
+
+```
+Alice
+   │
+   │ Secret Key = banana123
+   ▼
+Internet
+   ▲
+   │
+ Eve intercepts the packet
+   │
+Bob
+```
+
+Eve now knows the same secret key as Bob.
+
+From this point onwards, Eve can decrypt every encrypted message exchanged between Alice and Bob.
+
+This is known as the **Key Exchange Problem**.
+
+Symmetric encryption works well **after both parties already share the secret key**, but it does not explain how that secret key can be exchanged securely over an insecure network.
+
+---
+
+# Public Key Cryptography
+
+To solve the Key Exchange Problem, modern cryptography introduced the concept of two different keys.
+
+Every participant owns:
+
+- A **Public Key**
+- A **Private Key**
+
+The two keys serve different purposes.
+
+## Public Key
+
+- Can be shared with anyone.
+- Is not considered secret.
+- Can safely travel over the Internet.
+
+## Private Key
+
+- Never leaves its owner's computer.
+- Must remain secret.
+- Is used to decrypt information intended only for its owner.
+
+---
+
+## How It Solves the Problem
+
+Suppose Alice wants to send a secret message to Bob.
+
+Bob first shares his **Public Key**.
+
+Even if Eve intercepts Bob's Public Key, nothing is compromised because the Public Key is designed to be public.
+
+Alice then encrypts her message using Bob's Public Key.
+
+Once encrypted, **only Bob's Private Key can decrypt the message**.
+
+Although Eve can intercept the encrypted message, she cannot recover the original information because she does not possess Bob's Private Key.
+
+This allows two strangers to communicate securely without first sharing a secret key.
+
+---
+
+## Key Takeaways
+
+- Symmetric encryption requires both parties to already share the same secret key.
+- Sharing the secret key over the Internet exposes it to attackers.
+- This challenge is called the **Key Exchange Problem**.
+- Public Key Cryptography solves this problem using two keys.
+- The Public Key is shared openly.
+- The Private Key must always remain secret.
+
+---
+
+## Interview Questions
+
+### What is the Key Exchange Problem?
+
+The Key Exchange Problem is the challenge of securely sharing a secret encryption key over an insecure communication channel.
+
+---
+
+### Why can't Alice simply send the secret key to Bob?
+
+Because anyone intercepting the communication would also obtain the secret key and could decrypt future messages.
+
+---
+
+### What is the difference between a Public Key and a Private Key?
+
+A Public Key can be shared with anyone and is used during secure communication.
+
+A Private Key is kept secret and is never shared.
+
+Only the corresponding Private Key can decrypt data encrypted using its Public Key.
+
+---
+
+## My Understanding
+
+Today I understood why symmetric encryption alone is not sufficient for secure communication between strangers.
+
+The biggest challenge is not encrypting the data itself.
+
+The real challenge is securely exchanging the secret key.
+
+Public Key Cryptography was invented to solve this problem by introducing a pair of keys instead of relying on a single shared secret.
