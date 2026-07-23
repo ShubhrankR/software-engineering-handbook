@@ -556,3 +556,25 @@ I still need to learn how HTTPS uses Public Keys to establish a shared secret an
 ### Next Action
 
 Learn how TLS establishes a shared secret and why symmetric encryption is used for the rest of the communication.
+
+---
+
+## 2026-07-22
+
+No study today.
+
+### Reason
+
+Today was dedicated to delivering a high-priority task at work. I chose to focus on meeting my professional commitment instead of studying.
+
+### Reflection
+
+Some days require prioritizing work responsibilities, especially when there are important deliveries.
+
+This is not losing momentum—it is consciously prioritizing one responsibility over another.
+
+The important part is to return to the handbook once the delivery is complete.
+
+### Next Action
+
+Continue the TLS & HTTPS chapter by understanding why public-key encryption is not used for the entire communication and how TLS establishes a shared session key.
