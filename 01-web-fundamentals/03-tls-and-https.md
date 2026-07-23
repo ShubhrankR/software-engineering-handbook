@@ -480,3 +480,125 @@ The biggest challenge is not encrypting the data itself.
 The real challenge is securely exchanging the secret key.
 
 Public Key Cryptography was invented to solve this problem by introducing a pair of keys instead of relying on a single shared secret.
+
+---
+
+# Why Don't We Use Public-Key Cryptography for Everything?
+
+Public-Key Cryptography solved one of the biggest problems in secure communication: how two strangers can establish a shared secret over an insecure network.
+
+This naturally raises another question.
+
+If Public-Key Cryptography is secure, why doesn't HTTPS use it to encrypt every request and response?
+
+The answer is performance.
+
+Public-Key Cryptography is computationally expensive.
+
+Encrypting and decrypting data using public/private keys requires complex mathematical operations that consume significantly more CPU time than symmetric encryption.
+
+For small pieces of information, this overhead is acceptable.
+
+However, encrypting an entire website, video stream, software download or large file using Public-Key Cryptography would be unnecessarily slow.
+
+---
+
+## Symmetric Encryption Is Much Faster
+
+Symmetric encryption algorithms such as AES are designed to efficiently encrypt large amounts of data.
+
+Once both parties already share the same secret key, encryption and decryption become extremely fast.
+
+This makes symmetric encryption the ideal choice for protecting the actual communication after a secure connection has been established.
+
+---
+
+## How HTTPS Uses Both
+
+TLS combines the strengths of both approaches.
+
+```
+Browser
+      │
+      │ Request secure connection
+      ▼
+Server
+
+        │
+        │ Public-Key Cryptography
+        ▼
+
+Securely establish a shared session key
+
+        │
+        ▼
+
+Symmetric Encryption (AES)
+
+        │
+        ▼
+
+Encrypted HTTP Requests & Responses
+```
+
+Public-Key Cryptography is used only during the beginning of the connection to securely establish a shared secret.
+
+Once both sides possess the same session key, they switch to fast symmetric encryption for all subsequent communication.
+
+---
+
+## Session Key
+
+The shared secret established during the TLS handshake is called the **Session Key**.
+
+A session key exists only for a single secure connection.
+
+Every new HTTPS connection creates a new session key.
+
+Using a fresh session key for every connection improves security because compromising one session does not compromise previous or future sessions.
+
+---
+
+## Key Takeaways
+
+- Public-Key Cryptography is secure but computationally expensive.
+- Symmetric encryption is much faster for encrypting large amounts of data.
+- TLS uses Public-Key Cryptography only to establish a shared session key.
+- After the session key is established, all HTTP data is encrypted using symmetric encryption.
+- Every HTTPS connection creates a new temporary session key.
+
+---
+
+## Interview Questions
+
+### Why doesn't HTTPS use Public-Key Cryptography for the entire communication?
+
+Because Public-Key Cryptography is computationally expensive and inefficient for encrypting large amounts of data.
+
+HTTPS uses it only to establish a shared session key.
+
+After that, symmetric encryption is used for all communication.
+
+---
+
+### What is a Session Key?
+
+A Session Key is a temporary symmetric encryption key established during the TLS handshake.
+
+It is used to encrypt all communication for a single secure connection.
+
+---
+
+### Why is symmetric encryption preferred after the TLS handshake?
+
+Because symmetric encryption is significantly faster and more efficient for encrypting large amounts of data than Public-Key Cryptography.
+
+---
+
+## My Understanding
+
+Initially, I thought HTTPS used Public-Key Cryptography for the entire communication.
+
+Now I understand that Public-Key Cryptography is mainly used to solve the Key Exchange Problem.
+
+Once a shared session key has been established, HTTPS switches to fast symmetric encryption for the remainder of the connection.
