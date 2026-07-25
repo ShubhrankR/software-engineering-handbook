@@ -578,3 +578,68 @@ The important part is to return to the handbook once the delivery is complete.
 ### Next Action
 
 Continue the TLS & HTTPS chapter by understanding why public-key encryption is not used for the entire communication and how TLS establishes a shared session key.
+
+---
+
+## 2026-07-23
+
+### Topic
+
+Why TLS Switches to Symmetric Encryption
+
+### Learned
+
+- Public-Key Cryptography is computationally expensive and inefficient for encrypting large amounts of data.
+- Symmetric encryption algorithms such as AES are much faster and better suited for protecting ongoing communication.
+- TLS uses Public-Key Cryptography only during the beginning of the connection to securely establish a shared secret.
+- Once both parties possess the same Session Key, all HTTP requests and responses are encrypted using symmetric encryption.
+- A new Session Key is generated for every secure connection, improving security.
+
+### Realization
+
+Initially, I assumed HTTPS used Public-Key Cryptography for the entire communication.
+
+Today I understood that HTTPS combines two different cryptographic techniques because they solve different problems.
+
+Public-Key Cryptography is used to establish trust and exchange a shared secret, while symmetric encryption is used to efficiently protect all subsequent communication.
+
+### Interview Questions I Can Answer
+
+- Why doesn't HTTPS use Public-Key Cryptography for all communication?
+- Why is symmetric encryption preferred after the TLS handshake?
+- What is a Session Key?
+- Why is a new Session Key generated for every connection?
+
+### Confidence (Out of 10)
+
+8/10
+
+I understand why HTTPS combines both public-key and symmetric cryptography.
+
+The remaining piece is understanding how browsers verify a server's identity using Digital Certificates and Certificate Authorities.
+
+### Next Action
+
+Learn how Digital Certificates and Certificate Authorities (CAs) allow browsers to verify that they are communicating with the genuine server.
+
+---
+
+## 2026-07-24
+
+No study today.
+
+### Reason
+
+I did not study today.
+
+### Reflection
+
+Another day passed without making progress on the handbook.
+
+Missing a day does not erase what I have already learned, but repeated gaps can delay my interview preparation timeline.
+
+I need to focus on getting back into the routine instead of worrying about maintaining a perfect streak.
+
+### Next Action
+
+Continue the TLS & HTTPS chapter by learning how browsers verify a server's identity using Digital Certificates and Certificate Authorities (CAs).

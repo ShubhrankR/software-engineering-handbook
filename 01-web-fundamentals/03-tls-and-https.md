@@ -602,3 +602,160 @@ Initially, I thought HTTPS used Public-Key Cryptography for the entire communica
 Now I understand that Public-Key Cryptography is mainly used to solve the Key Exchange Problem.
 
 Once a shared session key has been established, HTTPS switches to fast symmetric encryption for the remainder of the connection.
+
+---
+
+# Digital Certificates & Certificate Authorities (CAs)
+
+Public-Key Cryptography allows two strangers to communicate securely without first sharing a secret key.
+
+However, another important question still remains.
+
+> How does a browser know that the Public Key it receives actually belongs to the intended website?
+
+Suppose a user visits:
+
+```
+https://google.com
+```
+
+The browser requests Google's Public Key.
+
+If an attacker is able to intercept this communication, the attacker could replace Google's Public Key with their own.
+
+The browser would unknowingly encrypt sensitive information using the attacker's Public Key.
+
+The attacker could decrypt the information, read it, and then forward it to Google.
+
+This type of attack is known as a **Man-in-the-Middle (MITM) Attack**.
+
+The problem is no longer encryption.
+
+The problem is verifying the identity of the server.
+
+---
+
+## Digital Certificate
+
+Instead of sending only its Public Key, a web server sends a **Digital Certificate**.
+
+A Digital Certificate contains information that helps the browser verify the server's identity.
+
+A certificate typically contains:
+
+- The domain name (for example, `google.com`)
+- The server's Public Key
+- The certificate's validity period
+- The name of the Certificate Authority (CA) that issued it
+- A Digital Signature from the Certificate Authority
+
+The browser uses this information to determine whether it should trust the server's Public Key.
+
+---
+
+## Why Can't Websites Create Their Own Certificates?
+
+Imagine Google created a certificate that simply said:
+
+```
+Issued By: Google
+```
+
+This would not prove anything.
+
+Any attacker could create a similar certificate claiming to represent another website.
+
+To solve this problem, Digital Certificates are issued by trusted third-party organizations rather than by the website itself.
+
+---
+
+## Certificate Authorities (CAs)
+
+A **Certificate Authority (CA)** is a trusted organization responsible for issuing Digital Certificates.
+
+Before issuing a certificate, the CA verifies that the applicant controls the requested domain.
+
+Examples of well-known Certificate Authorities include:
+
+- DigiCert
+- Let's Encrypt
+- GlobalSign
+- Sectigo
+
+---
+
+## How Browsers Trust Certificates
+
+Modern web browsers include a built-in list of trusted Certificate Authorities.
+
+When a server presents its Digital Certificate, the browser performs several checks.
+
+It verifies:
+
+- The certificate was issued by a trusted Certificate Authority.
+- The certificate has not expired.
+- The certificate was issued for the requested domain.
+- The certificate has not been modified.
+
+If these checks succeed, the browser trusts that the Public Key contained in the certificate belongs to the intended website.
+
+Only then does the TLS handshake continue.
+
+---
+
+## Key Takeaways
+
+- Public-Key Cryptography provides secure communication but does not verify identity.
+- An attacker could replace a server's Public Key during a Man-in-the-Middle attack.
+- Digital Certificates bind a domain name to a Public Key.
+- Digital Certificates are issued by trusted Certificate Authorities (CAs).
+- Browsers verify certificates before trusting a server's Public Key.
+
+---
+
+## Interview Questions
+
+### Why do we need Digital Certificates?
+
+Digital Certificates allow browsers to verify that a server's Public Key actually belongs to the intended website, preventing attackers from impersonating the server.
+
+---
+
+### What is a Certificate Authority (CA)?
+
+A Certificate Authority is a trusted organization that verifies domain ownership and issues Digital Certificates.
+
+---
+
+### What information does a Digital Certificate contain?
+
+A Digital Certificate typically contains:
+
+- The domain name
+- The server's Public Key
+- The validity period
+- The issuing Certificate Authority
+- The CA's Digital Signature
+
+---
+
+### What does a browser verify before trusting a certificate?
+
+The browser verifies that:
+
+- The certificate was issued by a trusted Certificate Authority.
+- The certificate has not expired.
+- The certificate matches the requested domain.
+- The certificate has not been altered.
+
+---
+
+## My Understanding
+
+Earlier, I believed receiving a Public Key was enough to establish a secure connection.
+
+Today I realized that encryption alone is not sufficient.
+
+Before using a Public Key, the browser must first verify that it genuinely belongs to the intended website.
+
+Digital Certificates and Certificate Authorities provide this trust, protecting users from Man-in-the-Middle attacks.
