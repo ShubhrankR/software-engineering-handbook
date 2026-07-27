@@ -643,3 +643,85 @@ I need to focus on getting back into the routine instead of worrying about maint
 ### Next Action
 
 Continue the TLS & HTTPS chapter by learning how browsers verify a server's identity using Digital Certificates and Certificate Authorities (CAs).
+
+---
+
+## 2026-07-25
+
+### Topic
+
+Digital Certificates & Certificate Authorities (CAs)
+
+### Learned
+
+- Public-Key Cryptography alone cannot verify a server's identity.
+- An attacker can replace a server's Public Key during a Man-in-the-Middle (MITM) attack.
+- Digital Certificates bind a domain name to a Public Key.
+- Certificate Authorities (CAs) verify domain ownership before issuing certificates.
+- Browsers verify certificates before trusting a server's Public Key.
+
+### Realization
+
+Today's session was shorter than usual, but I still completed another important piece of the TLS puzzle.
+
+I realized that secure communication is not only about encryption.
+
+It is equally important to verify **who** I am communicating with before trusting their Public Key.
+
+### Interview Questions I Can Answer
+
+- Why are Digital Certificates required?
+- What is a Certificate Authority?
+- What information does a Digital Certificate contain?
+- What is a Man-in-the-Middle attack?
+- How does a browser verify a server's identity?
+
+### Confidence (Out of 10)
+
+**7.5/10**
+
+I now understand how browsers establish trust in a server's identity.
+
+The remaining concepts are Digital Signatures and the complete TLS Handshake.
+
+### Next Action
+
+Learn how Digital Signatures allow browsers to verify that a Certificate Authority actually issued a certificate and that it has not been modified.
+
+---
+
+## 2026-07-26
+
+No study today.
+
+### Reason
+
+I was questioning whether these studies were actually helping me achieve my larger goals.
+
+I kept thinking:
+
+- What's the point of studying this?
+- I'm not preparing interview-specific topics.
+- I'm not applying for jobs consistently.
+- I'm not generating any additional income.
+- Compared to January, am I actually closer to changing jobs?
+
+Because of these thoughts, I lost the motivation to study.
+
+### Reflection
+
+Today I realized I wasn't avoiding the handbook because the topic was difficult.
+
+I was struggling to see how today's study session connected to my long-term goals.
+
+Learning fundamentals is valuable, but I also need to see measurable progress toward becoming interview-ready and changing jobs.
+
+The challenge isn't a lack of discipline—it's maintaining confidence that my daily efforts are leading somewhere meaningful.
+
+### Next Action
+
+Finish the TLS & HTTPS chapter.
+
+This weekend, create a concrete roadmap that balances deep learning with interview preparation and job applications.
+
+---
