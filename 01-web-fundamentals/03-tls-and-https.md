@@ -2,17 +2,15 @@
 
 ## The Problem
 
-HTTP is an application layer protocol that allows a client and a server to exchange information over the Internet.
+HTTP is an application-layer protocol that allows a client and server to exchange information over the Internet.
 
-Although HTTP successfully transfers data, it has one major limitation.
+It successfully transfers data, but it has one major limitation.
 
 **HTTP sends data in plain text.**
 
-Anyone who is able to inspect the network traffic may be able to read the transmitted information.
+Anyone able to inspect the network traffic may be able to read what is transmitted.
 
-This is not a major concern for public information such as news articles or blog posts.
-
-However, it becomes a serious security problem when sensitive information such as usernames, passwords, banking details, session cookies or personal information is transmitted.
+This is not a major concern for public information such as a news article. It becomes serious when usernames, passwords, banking details, session cookies or personal information are involved.
 
 ---
 
@@ -20,13 +18,11 @@ However, it becomes a serious security problem when sensitive information such a
 
 Imagine sending a postcard through the postal service.
 
-Everyone involved in delivering the postcard can potentially read its contents.
+The message reaches its destination, but everyone handling it can potentially read it.
 
 HTTP behaves in a similar way.
 
-The message reaches its destination, but it is not protected from being read while travelling.
-
-HTTPS is like placing the same message inside a sealed envelope that only the intended recipient can open.
+HTTPS is like placing that message inside a sealed envelope that only the intended recipient can open.
 
 ---
 
@@ -49,33 +45,31 @@ The request travels through several devices before reaching the bank.
 
 ```
 My Laptop
-     │
+    "��y��y�
 Wi-Fi Router
-     │
+     �w^~)�v
 Internet Service Provider (ISP)
-     │
+     �w^~)�v
 Internet
-     │
+    "��y��y�
 Bank Server
 ```
 
-Since HTTP does not encrypt the transmitted data, anyone capable of inspecting the traffic may be able to read the transmitted information.
+With plain HTTP, anyone capable of inspecting that traffic may be able to read the credentials.
 
-The communication successfully reaches the bank, but it is **not confidential**.
+The request arrives, but it is **not confidential**.
 
 ---
 
 ## Confidentiality
 
-Confidentiality is one of the fundamental goals of information security.
-
-It means:
+Confidentiality means:
 
 > Only the sender and the intended receiver should be able to read the transmitted data.
 
-HTTP does **not** provide confidentiality.
+HTTP does not provide confidentiality. HTTPS was introduced to protect data while it travels across the network.
 
-HTTPS was introduced to provide confidentiality while data travels across the network.
+That raises the next question: how can readable data be protected in transit?
 
 ---
 
@@ -83,19 +77,16 @@ HTTPS was introduced to provide confidentiality while data travels across the ne
 
 The Internet already had HTTP for transferring information between clients and servers.
 
-The problem was not transferring data.
-
-The problem was protecting the data while it travelled through the network.
+The problem was not transferring data. The problem was protecting it while it travelled through the network.
 
 Without HTTPS:
 
-- Usernames can be exposed.
-- Passwords can be exposed.
+- Usernames and passwords can be exposed.
 - Banking credentials can be exposed.
 - Session cookies can be stolen.
 - Personal information can be exposed.
 
-HTTPS was introduced to solve this problem.
+HTTPS was introduced to provide confidentiality. Encryption is the first tool that makes this possible.
 
 ---
 
@@ -104,7 +95,7 @@ HTTPS was introduced to solve this problem.
 - HTTP successfully transfers information but does not protect it.
 - HTTP sends data in plain text.
 - Plain HTTP provides no confidentiality.
-- Confidentiality means that only the sender and the intended receiver should be able to read the transmitted data.
+- Confidentiality means that only the sender and intended receiver should read the data.
 - HTTPS was introduced because HTTP lacked confidentiality.
 
 ---
@@ -113,21 +104,19 @@ HTTPS was introduced to solve this problem.
 
 ### Why was HTTPS invented?
 
-HTTP successfully transfers information but sends it in plain text.
-
-HTTPS was introduced to protect sensitive information while it travels across the network.
+HTTP transfers information but sends it in plain text. HTTPS was introduced to protect sensitive information while it travels across the network.
 
 ---
 
-### What is Confidentiality?
+### What is confidentiality?
 
-Confidentiality means that only the sender and the intended receiver should be able to read the transmitted data.
+Confidentiality means that only the sender and the intended receiver should be able to read transmitted data.
 
 ---
 
 ### Why is HTTP considered insecure?
 
-Because it sends data in plain text, making sensitive information readable by anyone capable of inspecting the network traffic.
+Because it sends data in plain text, making sensitive information readable to anyone capable of inspecting the network traffic.
 
 ---
 
@@ -135,39 +124,27 @@ Because it sends data in plain text, making sensitive information readable by an
 
 Initially, I thought HTTPS was simply a secure version of HTTP.
 
-Now I understand that HTTPS exists because HTTP lacks confidentiality.
-
-The first step towards understanding TLS is not encryption.
-
-It is understanding the problem that encryption was designed to solve.
+Now I understand that HTTPS exists because HTTP lacks confidentiality. The next step is understanding how encryption provides that confidentiality.
 
 ---
 
 # Encryption
 
-Sending data in plain text over the Internet is insecure because anyone capable of inspecting the network traffic may be able to read the transmitted information.
+Encryption transforms readable information into an unreadable form before it is sent over the network.
 
-One way to solve this problem is to transform the original message into another form before sending it across the network.
-
-This process is called **encryption**.
-
-Instead of sending readable information (plain text), the sender converts it into an unreadable form before transmission.
-
-Only the intended receiver should be able to convert it back to its original form.
+Only an authorized receiver should be able to convert it back to the original message.
 
 ---
 
 ## Simple Example
 
-Suppose Alice wants to send the following message to Bob.
+Suppose Alice wants to send Bob:
 
 ```
 HELLO
 ```
 
-Instead of sending it directly, Alice and Bob agree on a simple rule.
-
-Reverse every message before sending it.
+They agree to reverse every message before sending it.
 
 Alice sends:
 
@@ -175,49 +152,27 @@ Alice sends:
 OLLEH
 ```
 
-Bob knows the agreed rule, so he reverses the message again and recovers:
+Bob reverses it again and recovers:
 
 ```
 HELLO
 ```
 
-Someone intercepting the message can still see:
-
-```
-OLLEH
-```
-
-but without knowing the agreed rule, they cannot immediately understand its meaning.
+This demonstrates the basic idea: a message is transformed before transmission.
 
 ---
 
 ## Why Simple Transformations Are Not Enough
 
-The previous example demonstrates the basic idea of encryption, but it is not secure.
+Reversing text is not secure. If an attacker observes enough messages, the pattern becomes obvious.
 
-If an attacker observes enough encrypted messages, patterns begin to appear.
+Modern cryptography therefore does not depend on keeping the algorithm secret.
 
-Eventually, the attacker may discover that every message is simply written backwards.
+The algorithm can be public and well documented. Security comes from keeping the **key** secret.
 
-Once the rule becomes known, every future message can also be understood.
+A key is the value that controls how data is encrypted and decrypted. Without the correct key, intercepted data should remain unreadable.
 
-This shows that simple transformation techniques are not sufficient for secure communication over the Internet.
-
----
-
-## Modern Cryptography
-
-Modern cryptography follows an important principle.
-
-The encryption algorithm itself does **not** need to be secret.
-
-In fact, modern encryption algorithms are public and well documented.
-
-The security comes from keeping the **key** secret.
-
-Even if everyone knows how the encryption algorithm works, only the people possessing the correct key can encrypt and decrypt the transmitted data.
-
-Without the key, intercepted data should remain unreadable.
+Encryption solves confidentiality. However, both parties must first have the correct key.
 
 ---
 
@@ -227,7 +182,6 @@ Without the key, intercepted data should remain unreadable.
 - Simple transformation techniques are easy to discover and therefore insecure.
 - Modern cryptography does not rely on hiding the algorithm.
 - Modern cryptography relies on keeping the encryption key secret.
-- The algorithm may be public, but the key must remain secret.
 
 ---
 
@@ -241,17 +195,13 @@ Encryption is the process of transforming readable information into an unreadabl
 
 ### Why are simple encryption techniques insecure?
 
-Because attackers can discover patterns after observing many encrypted messages.
-
-Once the transformation rule becomes known, future messages can also be understood.
+Attackers can discover patterns after observing many messages. Once the transformation rule is known, future messages can also be understood.
 
 ---
 
 ### Why can encryption algorithms be public?
 
-Modern cryptography relies on keeping the encryption key secret rather than hiding the algorithm itself.
-
-The algorithm may be public, but without the correct key the encrypted data should remain unreadable.
+Modern cryptography relies on protecting the key rather than hiding the algorithm. Without the correct key, the encrypted data should remain unreadable.
 
 ---
 
@@ -259,191 +209,44 @@ The algorithm may be public, but without the correct key the encrypted data shou
 
 Initially, I believed secure communication depended on hiding the encryption technique itself.
 
-Now I understand that modern cryptography follows a different principle.
-
-Everyone can know the encryption algorithm.
-
-The security comes from protecting the secret key used by that algorithm.
+Now I understand that the algorithm can be public. Security comes from protecting the key used by that algorithm.
 
 ---
 
-# The Key Distribution Problem
+# The Key Exchange Problem
 
-Encryption allows Alice and Bob to communicate securely by using a secret key.
+The fast form of encryption used for normal communication is **symmetric encryption**.
 
-However, this introduces a new problem.
+It requires Alice and Bob to share the same secret key.
 
-Both Alice and Bob need to possess the same secret key before they can exchange encrypted messages.
+If they already share that key, they can encrypt and decrypt messages efficiently. But how do two strangers get the same secret key in the first place?
 
-The obvious solution is for Alice to simply send the key to Bob.
-
-```
-Alice ---- Secret Key ----> Bob
-```
-
-Unfortunately, if an attacker is able to inspect all network traffic, the attacker also receives the same secret key.
+Suppose Alice sends Bob:
 
 ```
-Alice
-   │
-Internet
-   │
-Eve 👀
-   │
-Bob
+Secret Key = banana123
 ```
 
-Once the attacker knows the secret key, every future encrypted message can also be decrypted.
+over the Internet.
 
-The communication is no longer secure.
+Anyone intercepting the packet receives the same secret key. From that point onward, the attacker can decrypt every message protected with it.
 
----
+So sending the secret directly does not work.
 
-## Why Is This Difficult?
+> How can two computers establish a shared secret when every packet may be intercepted?
 
-At first, it seems like Alice and Bob could each keep part of the secret key and exchange the missing pieces.
+This is the **Key Exchange Problem**.
 
-However, if those pieces are also transmitted over the same insecure network, an attacker can intercept them as well.
-
-This raises an important question.
-
-> How can two computers establish a shared secret key over a network where every packet can be intercepted?
-
-This problem is known as the **Key Distribution Problem**.
-
-For many years, this was considered one of the biggest challenges in secure communication.
-
-The solution to this problem eventually led to one of the greatest breakthroughs in modern cryptography.
+Symmetric encryption protects messages only after both parties already have a shared secret. Solving the earlier problem requires a different idea: Public-Key Cryptography.
 
 ---
 
 ## Key Takeaways
 
 - Symmetric encryption requires both parties to share the same secret key.
-- Sending the secret key over an insecure network exposes it to attackers.
-- Protecting the message is not enough; the secret key must also be protected.
-- Securely exchanging a secret key is known as the **Key Distribution Problem**.
-
----
-
-## Interview Questions
-
-### Why can't Alice simply send the secret key to Bob?
-
-Because anyone capable of intercepting the network traffic would also receive the secret key, making future encrypted communication insecure.
-
----
-
-### What is the Key Distribution Problem?
-
-The Key Distribution Problem is the challenge of securely establishing a shared secret key between two parties over an insecure communication channel.
-
----
-
-## My Understanding
-
-Initially, I thought that once Alice and Bob had a secret key, secure communication would be solved.
-
-Today I realized that the real challenge is much earlier.
-
-Before encryption can even begin, both parties somehow need to obtain the same secret key without allowing anyone else to learn it.
-
-Understanding this problem helps explain why more advanced cryptographic techniques were eventually developed.
-
----
-
-# The Key Exchange Problem
-
-Encryption relies on a secret key.
-
-If Alice and Bob already share the same secret key, they can communicate securely using symmetric encryption.
-
-However, this introduces another problem.
-
-How do two strangers securely share the secret key over an insecure network?
-
-Suppose Alice wants to use the following secret key:
-
-```
-banana123
-```
-
-She sends the key to Bob over the Internet.
-
-```
-Alice
-   │
-   │ Secret Key = banana123
-   ▼
-Internet
-   ▲
-   │
- Eve intercepts the packet
-   │
-Bob
-```
-
-Eve now knows the same secret key as Bob.
-
-From this point onwards, Eve can decrypt every encrypted message exchanged between Alice and Bob.
-
-This is known as the **Key Exchange Problem**.
-
-Symmetric encryption works well **after both parties already share the secret key**, but it does not explain how that secret key can be exchanged securely over an insecure network.
-
----
-
-# Public Key Cryptography
-
-To solve the Key Exchange Problem, modern cryptography introduced the concept of two different keys.
-
-Every participant owns:
-
-- A **Public Key**
-- A **Private Key**
-
-The two keys serve different purposes.
-
-## Public Key
-
-- Can be shared with anyone.
-- Is not considered secret.
-- Can safely travel over the Internet.
-
-## Private Key
-
-- Never leaves its owner's computer.
-- Must remain secret.
-- Is used to decrypt information intended only for its owner.
-
----
-
-## How It Solves the Problem
-
-Suppose Alice wants to send a secret message to Bob.
-
-Bob first shares his **Public Key**.
-
-Even if Eve intercepts Bob's Public Key, nothing is compromised because the Public Key is designed to be public.
-
-Alice then encrypts her message using Bob's Public Key.
-
-Once encrypted, **only Bob's Private Key can decrypt the message**.
-
-Although Eve can intercept the encrypted message, she cannot recover the original information because she does not possess Bob's Private Key.
-
-This allows two strangers to communicate securely without first sharing a secret key.
-
----
-
-## Key Takeaways
-
-- Symmetric encryption requires both parties to already share the same secret key.
-- Sharing the secret key over the Internet exposes it to attackers.
-- This challenge is called the **Key Exchange Problem**.
-- Public Key Cryptography solves this problem using two keys.
-- The Public Key is shared openly.
-- The Private Key must always remain secret.
+- Sending that secret over an insecure network exposes it.
+- Two strangers cannot simply exchange a secret key in plain text.
+- This challenge is called the Key Exchange Problem.
 
 ---
 
@@ -451,121 +254,96 @@ This allows two strangers to communicate securely without first sharing a secret
 
 ### What is the Key Exchange Problem?
 
-The Key Exchange Problem is the challenge of securely sharing a secret encryption key over an insecure communication channel.
+The Key Exchange Problem is the challenge of securely establishing a shared secret between two parties over an insecure communication channel.
 
 ---
 
 ### Why can't Alice simply send the secret key to Bob?
 
-Because anyone intercepting the communication would also obtain the secret key and could decrypt future messages.
-
----
-
-### What is the difference between a Public Key and a Private Key?
-
-A Public Key can be shared with anyone and is used during secure communication.
-
-A Private Key is kept secret and is never shared.
-
-Only the corresponding Private Key can decrypt data encrypted using its Public Key.
+Anyone intercepting the network traffic would also receive the key and could decrypt future communication.
 
 ---
 
 ## My Understanding
 
-Today I understood why symmetric encryption alone is not sufficient for secure communication between strangers.
+Initially, I thought that once Alice and Bob had a secret key, secure communication would be solved.
 
-The biggest challenge is not encrypting the data itself.
-
-The real challenge is securely exchanging the secret key.
-
-Public Key Cryptography was invented to solve this problem by introducing a pair of keys instead of relying on a single shared secret.
+Now I understand that the real challenge comes earlier: they must establish the same secret without revealing it to anyone else.
 
 ---
 
-# Why Don't We Use Public-Key Cryptography for Everything?
+# Public-Key Cryptography
 
-Public-Key Cryptography solved one of the biggest problems in secure communication: how two strangers can establish a shared secret over an insecure network.
+Public-Key Cryptography solves the Key Exchange Problem by giving every participant two related keys:
 
-This naturally raises another question.
+- A **Public Key**, which can be shared openly.
+- A **Private Key**, which remains secret on its owner's computer.
 
-If Public-Key Cryptography is secure, why doesn't HTTPS use it to encrypt every request and response?
+Suppose Bob shares his Public Key with Alice.
 
-The answer is performance.
+Alice can use Bob's Public Key to protect information intended for Bob. Only Bob's corresponding Private Key can recover it.
+
+An attacker can see Bob's Public Key and the encrypted message, but cannot read the message without Bob's Private Key.
+
+This gives strangers a secure way to establish a shared secret without first sending that secret in plain text.
+
+Public-Key Cryptography solves the trustless-start problem. However, it is not efficient enough to protect all website data.
+
+---
+
+## Key Takeaways
+
+- Public-Key Cryptography uses a public key and a private key.
+- The public key can be shared openly; the private key must remain secret.
+- It allows strangers to establish a shared secret over an insecure network.
+- It solves the Key Exchange Problem.
+
+---
+
+## Interview Questions
+
+### What is the difference between a Public Key and a Private Key?
+
+A Public Key can be shared openly. A Private Key remains secret. Data protected with a public key can be recovered only with its corresponding private key.
+
+---
+
+### Why is Public-Key Cryptography useful for HTTPS?
+
+It allows a browser and server that do not already share a secret to establish one securely.
+
+---
+
+## My Understanding
+
+Public-Key Cryptography solves the problem that symmetric encryption cannot solve alone: how two strangers can establish a shared secret without sending that secret directly.
+
+---
+
+# Why Public-Key Cryptography Is Too Slow
 
 Public-Key Cryptography is computationally expensive.
 
-Encrypting and decrypting data using public/private keys requires complex mathematical operations that consume significantly more CPU time than symmetric encryption.
+For a small amount of information during connection setup, that cost is acceptable. Encrypting every web page, image, video stream or download with it would be unnecessarily slow.
 
-For small pieces of information, this overhead is acceptable.
+Symmetric encryption algorithms such as AES are much faster for large amounts of data.
 
-However, encrypting an entire website, video stream, software download or large file using Public-Key Cryptography would be unnecessarily slow.
-
----
-
-## Symmetric Encryption Is Much Faster
-
-Symmetric encryption algorithms such as AES are designed to efficiently encrypt large amounts of data.
-
-Once both parties already share the same secret key, encryption and decryption become extremely fast.
-
-This makes symmetric encryption the ideal choice for protecting the actual communication after a secure connection has been established.
-
----
-
-## How HTTPS Uses Both
-
-TLS combines the strengths of both approaches.
+TLS therefore uses each approach where it is strongest:
 
 ```
-Browser
-      │
-      │ Request secure connection
-      ▼
-Server
-
-        │
-        │ Public-Key Cryptography
-        ▼
-
-Securely establish a shared session key
-
-        │
-        ▼
-
-Symmetric Encryption (AES)
-
-        │
-        ▼
-
-Encrypted HTTP Requests & Responses
+Public-Key Cryptography +�u���R establish a shared secret
+Symmetric Encryption    "��y��y� protect the actual HTTP data
 ```
 
-Public-Key Cryptography is used only during the beginning of the connection to securely establish a shared secret.
-
-Once both sides possess the same session key, they switch to fast symmetric encryption for all subsequent communication.
-
----
-
-## Session Key
-
-The shared secret established during the TLS handshake is called the **Session Key**.
-
-A session key exists only for a single secure connection.
-
-Every new HTTPS connection creates a new session key.
-
-Using a fresh session key for every connection improves security because compromising one session does not compromise previous or future sessions.
+The shared secret used for one secure connection has a special name: the Session Key.
 
 ---
 
 ## Key Takeaways
 
 - Public-Key Cryptography is secure but computationally expensive.
-- Symmetric encryption is much faster for encrypting large amounts of data.
-- TLS uses Public-Key Cryptography only to establish a shared session key.
-- After the session key is established, all HTTP data is encrypted using symmetric encryption.
-- Every HTTPS connection creates a new temporary session key.
+- Symmetric encryption is much faster for large amounts of data.
+- TLS uses both approaches for different parts of the connection.
 
 ---
 
@@ -573,143 +351,86 @@ Using a fresh session key for every connection improves security because comprom
 
 ### Why doesn't HTTPS use Public-Key Cryptography for the entire communication?
 
-Because Public-Key Cryptography is computationally expensive and inefficient for encrypting large amounts of data.
-
-HTTPS uses it only to establish a shared session key.
-
-After that, symmetric encryption is used for all communication.
-
----
-
-### What is a Session Key?
-
-A Session Key is a temporary symmetric encryption key established during the TLS handshake.
-
-It is used to encrypt all communication for a single secure connection.
-
----
-
-### Why is symmetric encryption preferred after the TLS handshake?
-
-Because symmetric encryption is significantly faster and more efficient for encrypting large amounts of data than Public-Key Cryptography.
+It is computationally expensive and inefficient for large amounts of data. HTTPS uses it during setup, then uses fast symmetric encryption for the actual communication.
 
 ---
 
 ## My Understanding
 
-Initially, I thought HTTPS used Public-Key Cryptography for the entire communication.
+I initially thought HTTPS used Public-Key Cryptography for every request and response.
 
-Now I understand that Public-Key Cryptography is mainly used to solve the Key Exchange Problem.
-
-Once a shared session key has been established, HTTPS switches to fast symmetric encryption for the remainder of the connection.
+Now I understand that it is mainly used during connection setup, while symmetric encryption handles the bulk of the work.
 
 ---
 
-# Digital Certificates & Certificate Authorities (CAs)
+# Session Key
 
-Public-Key Cryptography allows two strangers to communicate securely without first sharing a secret key.
+A **Session Key** is the temporary shared secret used by the browser and server for one secure connection.
 
-However, another important question still remains.
+After TLS establishes it, both sides use the Session Key with symmetric encryption to protect HTTP requests and responses.
 
-> How does a browser know that the Public Key it receives actually belongs to the intended website?
+A fresh Session Key is created for each new connection. This limits the impact if one session is ever compromised.
 
-Suppose a user visits:
-
-```
-https://google.com
-```
-
-The browser requests Google's Public Key.
-
-If an attacker is able to intercept this communication, the attacker could replace Google's Public Key with their own.
-
-The browser would unknowingly encrypt sensitive information using the attacker's Public Key.
-
-The attacker could decrypt the information, read it, and then forward it to Google.
-
-This type of attack is known as a **Man-in-the-Middle (MITM) Attack**.
-
-The problem is no longer encryption.
-
-The problem is verifying the identity of the server.
-
----
-
-## Digital Certificate
-
-Instead of sending only its Public Key, a web server sends a **Digital Certificate**.
-
-A Digital Certificate contains information that helps the browser verify the server's identity.
-
-A certificate typically contains:
-
-- The domain name (for example, `google.com`)
-- The server's Public Key
-- The certificate's validity period
-- The name of the Certificate Authority (CA) that issued it
-- A Digital Signature from the Certificate Authority
-
-The browser uses this information to determine whether it should trust the server's Public Key.
-
----
-
-## Why Can't Websites Create Their Own Certificates?
-
-Imagine Google created a certificate that simply said:
-
-```
-Issued By: Google
-```
-
-This would not prove anything.
-
-Any attacker could create a similar certificate claiming to represent another website.
-
-To solve this problem, Digital Certificates are issued by trusted third-party organizations rather than by the website itself.
-
----
-
-## Certificate Authorities (CAs)
-
-A **Certificate Authority (CA)** is a trusted organization responsible for issuing Digital Certificates.
-
-Before issuing a certificate, the CA verifies that the applicant controls the requested domain.
-
-Examples of well-known Certificate Authorities include:
-
-- DigiCert
-- Let's Encrypt
-- GlobalSign
-- Sectigo
-
----
-
-## How Browsers Trust Certificates
-
-Modern web browsers include a built-in list of trusted Certificate Authorities.
-
-When a server presents its Digital Certificate, the browser performs several checks.
-
-It verifies:
-
-- The certificate was issued by a trusted Certificate Authority.
-- The certificate has not expired.
-- The certificate was issued for the requested domain.
-- The certificate has not been modified.
-
-If these checks succeed, the browser trusts that the Public Key contained in the certificate belongs to the intended website.
-
-Only then does the TLS handshake continue.
+At this point, the browser can establish a shared secret with whoever sent a Public Key. But it still needs to know that it is talking to the real server.
 
 ---
 
 ## Key Takeaways
 
-- Public-Key Cryptography provides secure communication but does not verify identity.
-- An attacker could replace a server's Public Key during a Man-in-the-Middle attack.
-- Digital Certificates bind a domain name to a Public Key.
-- Digital Certificates are issued by trusted Certificate Authorities (CAs).
-- Browsers verify certificates before trusting a server's Public Key.
+- A Session Key is a temporary shared secret for one secure connection.
+- It is used with fast symmetric encryption after connection setup.
+- A new connection receives a new Session Key.
+
+---
+
+## Interview Questions
+
+### What is a Session Key?
+
+A Session Key is a temporary symmetric key established for one secure connection and used to encrypt its communication.
+
+---
+
+### Why is symmetric encryption preferred after the TLS handshake?
+
+It is significantly faster and more efficient than Public-Key Cryptography for encrypting large amounts of data.
+
+---
+
+## My Understanding
+
+The Session Key connects the two encryption approaches: Public-Key Cryptography helps establish it, and symmetric encryption uses it to protect the rest of the communication.
+
+---
+
+# Digital Certificate
+
+A browser must verify that the Public Key it receives actually belongs to the intended website.
+
+Without that verification, an attacker could replace a server's Public Key with their own and impersonate the server. This is a **Man-in-the-Middle (MITM) Attack**.
+
+Instead of sending only a Public Key, a web server presents a **Digital Certificate**.
+
+A certificate binds the server's identity to its Public Key. It typically contains:
+
+- The domain name, such as `google.com`
+- The server's Public Key
+- Its validity period
+- The Certificate Authority (CA) that issued it
+- Evidence that the CA issued it
+
+A **Certificate Authority** is a trusted organization that verifies domain control before issuing certificates. Browsers include a built-in list of trusted CAs.
+
+The certificate tells the browser which server key it should trust. The browser still needs a way to verify that the certificate was actually issued by that Certificate Authority.
+
+---
+
+## Key Takeaways
+
+- Public-Key Cryptography alone does not verify server identity.
+- A Digital Certificate binds a domain name to a server Public Key.
+- Certificate Authorities issue certificates after verifying domain control.
+- Browsers trust certificates from their built-in list of trusted CAs.
 
 ---
 
@@ -717,45 +438,178 @@ Only then does the TLS handshake continue.
 
 ### Why do we need Digital Certificates?
 
-Digital Certificates allow browsers to verify that a server's Public Key actually belongs to the intended website, preventing attackers from impersonating the server.
+They allow a browser to verify that a server's Public Key belongs to the intended website, helping prevent server impersonation.
 
 ---
 
 ### What is a Certificate Authority (CA)?
 
-A Certificate Authority is a trusted organization that verifies domain ownership and issues Digital Certificates.
+A Certificate Authority is a trusted organization that verifies domain control and issues Digital Certificates.
 
 ---
 
 ### What information does a Digital Certificate contain?
 
-A Digital Certificate typically contains:
-
-- The domain name
-- The server's Public Key
-- The validity period
-- The issuing Certificate Authority
-- The CA's Digital Signature
-
----
-
-### What does a browser verify before trusting a certificate?
-
-The browser verifies that:
-
-- The certificate was issued by a trusted Certificate Authority.
-- The certificate has not expired.
-- The certificate matches the requested domain.
-- The certificate has not been altered.
+It typically contains the domain name, the server's Public Key, its validity period, the issuing CA, and evidence that the CA issued it.
 
 ---
 
 ## My Understanding
 
-Earlier, I believed receiving a Public Key was enough to establish a secure connection.
+Receiving a Public Key is not enough to establish a secure connection. Before using it, the browser must verify that it genuinely belongs to the intended website.
 
-Today I realized that encryption alone is not sufficient.
+---
 
-Before using a Public Key, the browser must first verify that it genuinely belongs to the intended website.
+# Digital Signature
 
-Digital Certificates and Certificate Authorities provide this trust, protecting users from Man-in-the-Middle attacks.
+A **Digital Signature** lets a receiver verify two properties:
+
+- **Authenticity**"��y��y� the information came from the claimed sender.
+- **Integrity**+�u���T the information has not been modified.
+
+It does not hide the document. Encryption provides confidentiality; a Digital Signature proves that a document is genuine and unchanged.
+
+When a CA issues a certificate, it signs the certificate using the CA's Private Key.
+
+The browser has trusted CA Public Keys built in. It uses the relevant CA Public Key to verify the certificate's Digital Signature.
+
+If an attacker changes the certificate, the signature verification fails. Creating a new valid signature would require the CA's Private Key.
+
+Once the browser verifies the certificate, it can trust the server's Public Key and continue with the TLS Handshake.
+
+---
+
+## Key Takeaways
+
+- A Digital Signature provides authenticity and integrity.
+- Digital Signatures do not encrypt the document.
+- CAs sign certificates using their Private Keys.
+- Browsers verify those signatures using trusted CA Public Keys.
+- Changing a certificate causes signature verification to fail.
+
+---
+
+## Interview Questions
+
+### What is a Digital Signature?
+
+A Digital Signature is a cryptographic mechanism that verifies the authenticity and integrity of digital information.
+
+---
+
+### What is the difference between Encryption and a Digital Signature?
+
+Encryption protects confidentiality by preventing unauthorized reading. A Digital Signature verifies who created information and that it has not been modified.
+
+---
+
+### Why can't an attacker modify a Digital Certificate?
+
+Changing the certificate invalidates its Digital Signature. Creating a valid replacement requires the CA's Private Key.
+
+---
+
+### How does a browser verify a Digital Certificate?
+
+It uses the trusted CA's Public Key to verify the certificate's Digital Signature, then checks that the certificate is valid for the requested domain and has not expired.
+
+---
+
+## My Understanding
+
+A certificate alone is not enough. The browser must verify its Digital Signature to know that a trusted CA issued it and that it has not been altered.
+
+---
+
+# TLS Handshake
+
+The **TLS Handshake** is the setup conversation that happens before encrypted HTTP data is sent.
+
+At a high level, it does the following:
+
+1. The browser connects and asks to start a secure session.
+2. The server sends its Digital Certificate.
+3. The browser verifies the certificate, including its Digital Signature, domain and validity period.
+4. The browser and server use Public-Key Cryptography to establish a shared Session Key.
+5. Both sides confirm that future communication will use that Session Key.
+
+After the handshake, the browser knows it is communicating with the intended server and both sides share the temporary secret needed for fast symmetric encryption.
+
+Now the normal HTTPS request can be sent safely.
+
+---
+
+## Key Takeaways
+
+- The TLS Handshake happens before encrypted HTTP data is exchanged.
+- It verifies the server's certificate.
+- It establishes a shared Session Key.
+- The Session Key is then used for fast symmetric encryption.
+
+---
+
+## Interview Questions
+
+### What happens during the TLS Handshake?
+
+The browser verifies the server's certificate and the browser and server establish a shared Session Key before encrypted HTTP communication begins.
+
+---
+
+## My Understanding
+
+The TLS Handshake is the bridge between trust and communication. It verifies the server first, then creates the temporary secret used to protect the actual request and response.
+
+---
+
+# HTTPS Request Flow
+
+Once the TLS Handshake is complete, HTTPS works like HTTP with an important difference: the HTTP data is encrypted using the Session Key.
+
+```
+Browser
+  �w^~)�v
+ "��y��y� TLS Handshake: verify certificate and establish Session Key
+ +�u���|
+Secure connection
+  �w^~)�v
+ "��y��y� Encrypted HTTP request
+ "��y��y�
+Server
+  �w^~)�v
+ "��y��y� Encrypted HTTP response
+ +�u���|
+Browser
+```
+
+For example, when a browser sends a login request, the username, password, headers and response are protected while travelling across the network.
+
+HTTPS does not change the purpose of HTTP. It adds the confidentiality and server identity checks needed to use HTTP safely on the Internet.
+
+---
+
+## Key Takeaways
+
+- HTTPS begins with a TLS Handshake.
+- After the handshake, HTTP requests and responses are encrypted with the Session Key.
+- TLS provides confidentiality and helps the browser verify the server's identity.
+
+---
+
+## Interview Questions
+
+### What is the difference between HTTP and HTTPS?
+
+HTTP transfers application data. HTTPS uses HTTP over TLS, adding encryption and server identity verification.
+
+---
+
+### What protects an HTTPS request after the handshake?
+
+The browser and server use their shared Session Key with symmetric encryption to protect the request and response.
+
+---
+
+## My Understanding
+
+HTTPS is not a separate replacement for HTTP. It is HTTP protected by TLS: the browser verifies the server, establishes a temporary shared key, and then exchanges encrypted requests and responses.
