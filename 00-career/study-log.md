@@ -725,3 +725,64 @@ Finish the TLS & HTTPS chapter.
 This weekend, create a concrete roadmap that balances deep learning with interview preparation and job applications.
 
 ---
+
+## 2026-07-28
+
+### Topic
+
+TLS Handshake & Complete HTTPS Request Flow (Revision)
+
+### Learned
+
+Today I reviewed the completed TLS chapter and focused on understanding how all the individual concepts fit together.
+
+Instead of learning new cryptographic concepts, I connected the entire HTTPS flow into one mental model.
+
+I now understand the sequence:
+
+- HTTP sends plaintext.
+- Encryption provides confidentiality.
+- Symmetric encryption requires a shared secret.
+- Public-Key Cryptography solves the Key Exchange Problem.
+- A Session Key is established for fast symmetric encryption.
+- Digital Certificates verify the server's identity.
+- Digital Signatures verify that the certificate is genuine.
+- The TLS Handshake combines all these concepts before any HTTP request is sent.
+- After the handshake completes, all HTTP requests and responses are encrypted using the Session Key.
+
+I also reviewed the overall HTTPS request lifecycle:
+
+DNS Resolution
+→ TCP Three-Way Handshake
+→ TLS Handshake
+→ Encrypted HTTP Request
+→ Server Processing
+→ Encrypted HTTP Response
+→ Browser Rendering
+
+### Realization
+
+Today I realized that the TLS Handshake is not a separate cryptographic concept.
+
+It is the process that brings together encryption, key exchange, certificates, digital signatures, and session keys to establish a trusted and secure connection before application data is exchanged.
+
+I also understood that the HTTPS Request Flow is the bridge between the networking concepts I learned earlier and the browser rendering pipeline.
+
+### Interview Questions I Should Be Able to Answer
+
+- What is the TLS Handshake?
+- Why is the TLS Handshake necessary?
+- What happens during the TLS Handshake?
+- Why is a Digital Certificate verified before establishing trust?
+- Why is a Session Key used after the handshake?
+- Explain what happens after typing https://google.com until the first encrypted HTTP request is sent.
+
+### Confidence
+
+8.5/10
+
+### Next Action
+
+Start the next chapter in the Software Engineering Handbook and continue building a first-principles understanding of web technologies.
+
+---
