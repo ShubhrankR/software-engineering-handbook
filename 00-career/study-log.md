@@ -786,3 +786,43 @@ I also understood that the HTTPS Request Flow is the bridge between the networki
 Start the next chapter in the Software Engineering Handbook and continue building a first-principles understanding of web technologies.
 
 ---
+
+## Date: 2026-07-29
+
+### Topic Studied
+HTTP Fundamentals (Part 1)
+
+### What I Learned
+- Learned that HTTP is an Application Layer protocol responsible for defining how clients and servers communicate.
+- Understood the difference between HTTP, TCP, and TLS:
+  - TCP provides reliable data transport.
+  - TLS secures communication through encryption.
+  - HTTP defines the structure and meaning of requests and responses.
+- Learned that HTTP follows the Client–Server and Request–Response model.
+- Understood why HTTP is called a stateless protocol and how cookies, sessions, and authentication tokens help maintain user state.
+- Explored the first HTTP request a browser sends after completing the DNS lookup, TCP handshake, and TLS handshake.
+- Verified the theory using Chrome DevTools by inspecting a real request to `https://www.google.com/`.
+- Observed that modern browsers use HTTP/2 or HTTP/3, where request information is represented using pseudo headers like `:method`, `:path`, `:authority`, and `:scheme`.
+- Learned that the browser first requests the HTML document (`GET /`) and only after parsing the HTML does it request additional resources such as CSS, JavaScript, images, and fonts.
+- Inspected common request headers such as `Accept`, `Accept-Encoding`, `Accept-Language`, `Cookie`, `Referer`, and `User-Agent`, and understood that they provide metadata about the request rather than being part of the webpage itself.
+
+### Realization
+HTTP is much more than simply "sending a request." It is a communication protocol that defines the language between the browser and the server. The browser doesn't request every resource at once—it first downloads the HTML document, discovers additional resources while parsing it, and then issues separate HTTP requests for those resources.
+
+### Interview Questions I Can Answer
+- What is HTTP?
+- Why do we need HTTP if TCP already exists?
+- What is the difference between HTTP, TCP, and TLS?
+- What is the Client–Server model?
+- What is the Request–Response model?
+- What does it mean that HTTP is stateless?
+- What is the first HTTP request a browser sends after establishing a secure connection?
+- Why does the browser first request HTML before requesting CSS and JavaScript?
+
+### Confidence Level
+8.5/10
+
+### Next Topic
+HTTP Message Structure (Request Line, Headers, and Request Body)
+
+---
