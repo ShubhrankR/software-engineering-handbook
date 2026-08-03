@@ -826,3 +826,137 @@ HTTP is much more than simply "sending a request." It is a communication protoco
 HTTP Message Structure (Request Line, Headers, and Request Body)
 
 ---
+
+
+## 2026-07-30
+
+No study today.
+
+### Reason
+
+I couldn't make time for studying because work remained my highest priority.
+
+With the recent organizational changes at VISA and the possibility of layoffs, my focus was divided between office work and thinking about my career.
+
+### Reflection
+
+Today reminded me that uncertainty can easily disrupt routines.
+
+Instead of feeling guilty, I need to keep returning to my study plan whenever possible.
+
+### Next Action
+
+Continue the HTTP chapter.
+
+---
+
+## 2026-07-31
+
+No study today.
+
+### Reason
+
+Another busy day at work.
+
+I spent most of my mental energy thinking about my current job situation and preparing myself for different possible outcomes.
+
+### Reflection
+
+The handbook remains important, but I also need to balance it with interview preparation.
+
+The current priority is becoming employable while continuing to strengthen my fundamentals.
+
+### Next Action
+
+Resume the HTTP chapter.
+
+---
+
+## 2026-08-01
+
+No study today.
+
+### Reason
+
+I was mentally exhausted after work and couldn't focus on learning.
+
+### Reflection
+
+Learning requires consistency more than intensity.
+
+Missing one day is acceptable as long as I return instead of abandoning the routine.
+
+### Next Action
+
+Resume with HTTP.
+
+---
+
+## 2026-08-02
+
+No study today.
+
+### Reason
+
+I chose to rest after a mentally tiring week.
+
+### Reflection
+
+Rest is valuable, but it should be intentional rather than becoming procrastination.
+
+Tomorrow I will return to the handbook.
+
+### Next Action
+
+Study HTTP Message Structure.
+
+---
+
+## 2026-08-03
+
+### Topic
+
+HTTP Message Structure & Understanding the Role of a Web Server
+
+### Learned
+
+Today I continued the HTTP chapter.
+
+I learned that every HTTP request has a well-defined structure consisting of:
+
+- Request Line
+- Headers
+- Optional Request Body
+
+I understood the responsibility of each component and why HTTP separates metadata (headers) from application data (body).
+
+I also understood what a Web Server actually is.
+
+A Web Server is software that understands HTTP requests, serves static resources, and forwards requests to backend applications when required.
+
+Using the Host header (or :authority in HTTP/2 and HTTP/3), the Web Server determines which website should handle an incoming request when multiple websites share the same server.
+
+I verified these concepts using Chrome DevTools by inspecting a real request to Google.
+
+### Realization
+
+Previously, I thought of HTTP requests as simply GET or POST calls.
+
+Today I realized that every request follows a precise structure, and that the Web Server is the software responsible for interpreting that structure before serving content or forwarding the request.
+
+### Interview Questions I Can Answer
+
+- What is a Web Server?
+- How is a Web Server different from an Application Server?
+- What are the three parts of an HTTP request?
+- Why is the Host header required?
+- Why are login credentials placed in the request body?
+- Why is the Authorization token usually sent as a header?
+
+### Confidence
+
+9/10
+
+### Next Action
+
+Study HTTP Methods (GET, POST, PUT, PATCH and DELETE).
