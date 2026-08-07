@@ -960,3 +960,83 @@ Today I realized that every request follows a precise structure, and that the We
 ### Next Action
 
 Study HTTP Methods (GET, POST, PUT, PATCH and DELETE).
+
+---
+
+## 2026-08-04
+
+No study today.
+
+### Reason
+
+I spent the evening shopping for home essentials on IKEA and Amazon.
+
+The shopping took longer than expected, and by the time I finished, I was mentally tired and decided not to study.
+
+### Reflection
+
+Personal responsibilities are a normal part of life.
+
+Missing one study session is acceptable, but I should avoid allowing it to break the overall learning routine.
+
+### Next Action
+
+Resume JavaScript interview preparation and continue the HTTP chapter.
+
+---
+
+## 2026-08-05
+
+No study today.
+
+### Reason
+
+After missing the previous day, I struggled to regain momentum and kept postponing my study session until the day ended.
+
+### Reflection
+
+Momentum is easier to maintain than rebuild.
+
+The solution isn't waiting for motivation—it is simply sitting down and starting, even for a short session.
+
+### Next Action
+
+Continue JavaScript interview preparation and HTTP Methods.
+
+---
+
+## 2026-08-06
+
+No study today.
+
+### Reason
+
+I again postponed studying and allowed another day to pass without making progress.
+
+### Reflection
+
+Three consecutive missed days feel much worse psychologically than they actually are.
+
+The right response is not trying to "catch up," but simply continuing from the next planned topic.
+
+### Next Action
+
+Resume the interview preparation roadmap and continue the HTTP chapter.
+
+---
+
+## 2026-08-07
+
+Study resumed.
+
+### Goal
+
+Restart the study routine without trying to compensate for the missed days.
+
+Continue JavaScript interview preparation and complete the next section of the HTTP chapter.
+
+### Reflection
+
+Consistency is measured by returning after interruptions.
+
+Today marks the restart of the routine, not an attempt to recover everything that was missed.

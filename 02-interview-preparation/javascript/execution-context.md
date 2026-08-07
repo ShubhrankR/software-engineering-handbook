@@ -2,15 +2,17 @@
 
 ## Definition
 
-An Execution Context is the environment in which JavaScript code runs. It contains the variables, functions, scope information, and the value of `this` needed to execute a piece of code.
+An **Execution Context** is the environment in which JavaScript code is executed. Every Execution Context contains a **Lexical Environment**, a **Variable Environment**, and a **this Binding**. The `this` binding is important but is intentionally not covered here.
 
 ---
 
-## Types
+## Types of Execution Context
 
-- **Global Execution Context** - Created when a JavaScript file starts running.
-- **Function Execution Context** - Created each time a function is invoked.
-- **Eval Execution Context** - Created for code run through `eval()`; it is rarely used and generally avoided.
+- **Global Execution Context** - Created when a JavaScript file begins execution.
+- **Function Execution Context** - Created every time a function is invoked.
+- **Eval Execution Context** - Created by `eval()`; it is rarely used and generally avoided.
+
+Blocks do **not** create Execution Contexts.
 
 ---
 
@@ -18,35 +20,127 @@ An Execution Context is the environment in which JavaScript code runs. It contai
 
 ### Memory Creation Phase
 
-JavaScript prepares the execution context before running code:
+Before execution begins, JavaScript prepares the current scope:
 
-- Scans declarations.
-- Allocates memory.
-- Initializes `var` as `undefined`.
-- Leaves `let` and `const` uninitialized.
+- Scans the entire scope for declarations.
+- Allocates memory for declarations.
+- Initializes `var` with `undefined`.
+- Allocates `let` and `const`, but leaves them uninitialized.
 - Stores function declarations completely in memory.
+- Does **not** execute code.
 
 ### Execution Phase
 
-JavaScript then runs the code line by line:
+JavaScript then executes code line by line:
 
-- Updates variable values.
-- Invokes functions.
-- Creates a Function Execution Context for each function call.
-- Pushes and pops contexts on the Call Stack.
+- Variable assignments happen here.
+- Function invocations create new Function Execution Contexts.
+- Function Execution Contexts are pushed onto the Call Stack.
+- After a function completes, its context is popped from the Call Stack.
 
 ---
 
 ## Call Stack
 
-The Call Stack tracks which Execution Context is currently executing. The Global Execution Context is placed on the stack first. When a function is called, its Function Execution Context is pushed on top. When that function finishes, its context is popped, and execution resumes in the context below it.
+The **Call Stack** tracks the order in which Execution Contexts run. The Global Execution Context starts first. Each function call pushes a new Function Execution Context on top of the stack. When the function returns, that context is popped.
 
 ```
-Top
-| Function Execution Context |
-| Global Execution Context   |
-Bottom
+Global Execution Context
+        |
+        v
+greet()
+        |
+        v
+anotherFunction()
 ```
+
+The last context pushed is the first context popped.
+
+---
+
+## Lexical Environment
+
+A **Lexical Environment** stores variable bindings and contains a reference to its **Outer Lexical Environment**.
+
+Variable lookup always starts in the current Lexical Environment. If JavaScript cannot find the variable there, it follows the Outer Lexical Environment Reference.
+
+---
+
+## Scope Chain
+
+Consider:
+
+```js
+let name = "Shubhrank";
+
+function outer() {
+    let age = 30;
+
+    function inner() {
+        console.log(name);
+        console.log(age);
+    }
+}
+```
+
+When `inner` looks up a variable, JavaScript searches in this order:
+
+```
+inner Lexical Environment
+        |
+        v
+outer Lexical Environment
+        |
+        v
+Global Lexical Environment
+```
+
+Variable lookup always goes from the current scope outward.
+
+It never searches inward.
+
+---
+
+## Block Scope
+
+Blocks create **Lexical Environments**.
+
+Blocks do **not** create Execution Contexts.
+
+```js
+{
+    let age = 30;
+}
+```
+
+`age` cannot be accessed outside the block because its binding exists in the block's Lexical Environment.
+
+That block environment has an Outer Lexical Environment Reference pointing to its enclosing scope.
+
+---
+
+## Hoisting
+
+Hoisting does not physically move declarations to the top of the file.
+
+Instead, the JavaScript engine scans declarations during the Memory Creation Phase before execution begins.
+
+| Declaration | Memory Creation behavior |
+| --- | --- |
+| `var` | Allocated and initialized with `undefined` |
+| `let` | Allocated but uninitialized |
+| `const` | Allocated but uninitialized and must be initialized at declaration |
+| Function declaration | Stored completely in memory |
+
+---
+
+## Temporal Dead Zone
+
+`let` and `const` are hoisted in the sense that memory is allocated for them during the Memory Creation Phase.
+
+However, they remain uninitialized until execution reaches their declaration.
+
+Accessing them before initialization throws a `ReferenceError`. This period is the **Temporal Dead Zone (TDZ)**.
 
 ---
 
@@ -57,88 +151,90 @@ Bottom
 - Explain the Execution Phase.
 - What is Hoisting?
 - What is the difference between `var` and `let`?
-- What is the Temporal Dead Zone (TDZ)?
-- Explain the Call Stack.
+- What is the TDZ?
+- What is a Lexical Environment?
+- What is the Scope Chain?
+- What is the difference between an Execution Context and a Lexical Environment?
+- Do blocks create Execution Contexts?
 
 ---
 
 ## Common Mistakes
 
-❌ Memory Creation executes code.
+❌ JavaScript executes code during Memory Creation.
 
-✓ It only scans declarations and allocates memory.
+✓ Memory Creation only scans declarations and allocates memory.
 
 ---
 
 ❌ `let` creates another Execution Context.
 
-✓ `let` is block scoped; it does not create an Execution Context by itself.
+✓ `let` creates bindings inside a Lexical Environment.
 
 ---
 
-❌ Hoisting moves variables to the top of the file.
+❌ Blocks create Execution Contexts.
 
-✓ JavaScript scans declarations before execution; it does not physically move code.
+✓ Blocks create Lexical Environments.
+
+---
+
+❌ Scope lookup works in both directions.
+
+✓ Scope lookup always searches outward.
+
+---
+
+❌ Hoisting moves declarations.
+
+✓ JavaScript scans declarations before execution.
 
 ---
 
 ## Whiteboard Diagram
 
-For:
-
-```js
-console.log("A");
-
-function greet() {
-    console.log("B");
-}
-
-greet();
-
-console.log("C");
 ```
-
-```
-Memory Creation Phase
-Global Context:
-- greet -> function definition
-
-Execution Phase
-1. console.log("A")  -> A
-2. greet()           -> push Function Context
-3. console.log("B")  -> B
-4. greet returns      -> pop Function Context
-5. console.log("C")  -> C
-
-Call Stack during greet():
-
-Top
-| greet() |
-| Global  |
-Bottom
+Global Execution Context
+        |
+        v
+Function Execution Context
+        |
+        v
+Lexical Environments
+        |
+        v
+Outer Lexical Environment References
+        |
+        v
+Global Lexical Environment
 ```
 
 ---
 
 ## 2 Minute Interview Answer
 
-An Execution Context is the environment JavaScript creates to run code. It holds the variables, function declarations, scope information, and `this` value needed during execution.
+An Execution Context is the environment JavaScript creates to run code. It includes a Lexical Environment, a Variable Environment, and a `this` binding. JavaScript creates one Global Execution Context for a script and a new Function Execution Context for every function invocation. Blocks do not create Execution Contexts.
 
-JavaScript creates a Global Execution Context when a file starts, and it creates a new Function Execution Context whenever a function is called. Each context has two phases. In the Memory Creation Phase, JavaScript scans declarations, allocates memory, initializes `var` with `undefined`, leaves `let` and `const` uninitialized in the Temporal Dead Zone, and stores function declarations. In the Execution Phase, it runs code line by line and updates values.
+Each context has two phases. In the Memory Creation Phase, JavaScript scans the scope, allocates memory, initializes `var` as `undefined`, leaves `let` and `const` uninitialized, and stores function declarations. No code executes in this phase. In the Execution Phase, JavaScript runs code line by line, assigns values, and creates function contexts as functions are called.
 
-The Call Stack manages these contexts. The global context starts on the stack. Function calls push a new context on top, and completed functions are popped off. This model explains hoisting, the TDZ, and why JavaScript executes synchronous code in a predictable order.
+The Call Stack manages those contexts using push and pop behavior. Lexical Environments manage variable lookup. A Lexical Environment stores bindings and points to its outer environment, which creates the Scope Chain. JavaScript always searches from the current scope outward, never inward. This model explains hoisting, block scope, and the Temporal Dead Zone.
 
 ---
 
 ## Revision Notes
 
 - Execution Context is the environment in which JavaScript runs code.
-- Global Execution Context is created once per script.
-- Function Execution Context is created per function invocation.
-- `eval()` creates an Eval Execution Context but is rarely used.
+- Every context contains a Lexical Environment, Variable Environment, and `this` binding.
+- Global, Function, and Eval are the Execution Context types.
+- `eval()` is rarely used and generally avoided.
+- Blocks create Lexical Environments, not Execution Contexts.
 - Memory Creation scans declarations and allocates memory.
-- `var` is initialized as `undefined`; `let` and `const` remain uninitialized.
-- Function declarations are available during Memory Creation.
+- `var` becomes `undefined`; `let` and `const` remain uninitialized.
+- Function declarations are stored completely before execution.
 - Execution Phase runs code line by line.
-- The Call Stack pushes function contexts and pops them after completion.
-- Hoisting describes declaration handling before execution, not physical code movement.
+- Function calls push contexts onto the Call Stack; returns pop them.
+- A Lexical Environment stores bindings and references its outer environment.
+- Scope Chain lookup starts locally and searches outward only.
+- Hoisting is declaration handling before execution, not code movement.
+- TDZ is the period before a `let` or `const` declaration is initialized.
+- Accessing a `let` or `const` binding in the TDZ throws `ReferenceError`.
